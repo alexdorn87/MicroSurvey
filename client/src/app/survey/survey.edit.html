@@ -1,0 +1,426 @@
+<div class="col-xs-24 new__survey view-content">
+  <div class="row new__survey__actions secondary-menu">
+    <form class="form-inline filter-menu">
+      <div class="new__survey__title form-group secondary-menu__item col-xs-24 col-sm-10">
+            <span ng-show="!vm.editTitle">
+                <label class="form-control-static">
+                  {{vm.survey.name}}
+                </label>
+            <i class="fa fa-edit" ng-click="vm.toggleEditTitle(true)"></i>
+            </span>
+            <span ng-show="vm.editTitle">
+                <input type="text" ng-model="vm.survey.name" class="form-control-static">
+            <i class="fa fa-floppy-o" ng-click="vm.toggleEditTitle(false)"></i>
+          </span>
+      </div>
+      <div class="new__survey__status form-group secondary-menu__item secondary-menu__item--no-block col-xs-24 col-sm-6">
+        <div class="survey__toggle pull-right">
+         <div class="label-text">
+             Survey Status
+         </div>
+         <div class="switch {{vm.survey.status}}">
+           <input id="toggle_{{survey.id}}" class="toggle" type="checkbox" ng-model="vm.toggleState">
+           <label for="toggle_{{survey.id}}" class="" ng-click="vm.toggleSurvey()">
+           </label>
+           <div class="status">
+             {{vm.isActive}}
+           </div>
+         </div>
+        </div>
+      </div>
+      <div class="new__survey__save form-group secondary-menu__item col-xs-24 col-sm-8 text-right">
+        <span class="link-box xs-left">
+          <i class="fa fa-floppy-o"></i>
+          <a href="" ng-click="vm.saveSurvey()">Save & Start Later</a>
+        </span>
+
+        <div class="buttons">
+          <!--<button class="btn btn-lg btn-new btn-dull">Generate URL</button>-->
+          <button class="btn btn-lg btn-new btn-success" ng-click="vm.saveStartSurvey()">Start Survey <i class="fa fa-caret-right"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row new__survey__body">
+    <div class="col-md-16 new__survey__body__settings">
+      <uib-accordion class="questions" ng-init="statusQuestions = {open: true}">
+        <uib-accordion-group is-open="statusQuestions.open" template-url="group-template.html">
+          <uib-accordion-heading>
+                      <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-check fa-stack-1x"></i>
+                      </span>
+            <h4 class="subtitle">Questions</h4>
+            <i class="pull-right fa"
+               ng-class="{'fa-caret-up': statusQuestions.open, 'fa-caret-down': !statusQuestions.open}"></i>
+          </uib-accordion-heading>
+          <div class="panel-body">
+            <div class="col-xs-24">
+              <p>Create your question</p>
+            </div>
+            <div class="col-xs-24 question-block"
+                 ng-class="{'question-block--last' : $last, 'question-block--first' : $first}"
+                 ng-repeat="question in vm.survey.questions track by $index">
+              <div class="col-xs-2">
+                <div class="row">
+                  <span class="badge">{{$index + 1}}</span>
+                </div>
+              </div>
+              <div class="col-xs-21">
+                <div class="row"
+                     ng-if="$index > 0 && (question.inputType.type == 'radioButtons' || question.inputType.type == 'scale' || question.inputType.type == 'emotion')">
+                  <ui-select ng-model="question.type" class="fixed-width-select" theme="bootstrap">
+                    <ui-select-match placeholder="Question type">
+                      <span ng-bind="$select.selected.name"></span>
+                    </ui-select-match>
+                    <ui-select-choices
+                      repeat="item in (vm.questionTypes | filter: $select.search) track by $index">
+                      <span ng-bind="item.name"></span>
+                    </ui-select-choices>
+                  </ui-select>
+                  <span ng-if="question.type.type == 'nested'">
+                    <label class="nested-dropdown"> TO
+                      <ui-select ng-model="question.nested.to" class="fixed-width-select fixed-width-select--small" theme="bootstrap">
+                        <ui-select-match placeholder="to...">
+                          <span>{{$select.activeIndex + 1}}</span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="q.questionNumber as q in (vm.survey.questions | filter: $select.search)">
+                          <span>{{ q.questionNumber + 1 }}</span>
+                        </ui-select-choices>
+                      </ui-select>
+                    </label>
+
+                    <label class="nested-dropdown"> IF
+                      <span ng-if="question.inputType.type == 'radioButtons'">
+                        <ui-select multiple ng-model="question.nested.if" class="fixed-width-select" theme="bootstrap">
+                          <ui-select-match placeholder="If Answer(s)...">
+                            <!--<span>{{vm.optionLetters[$select.activeIndex]}}</span>-->
+                            <span>{{$item.letterOption}}</span>
+                          </ui-select-match>
+                          <ui-select-choices repeat="option.letterOption as option in (question.radioOptions | filter: $select.search)">
+                            <span>{{option.letterOption}}</span>
+                          </ui-select-choices>
+                        </ui-select>
+                      </span>
+
+                      <span ng-if="question.inputType.type == 'scale'">
+                        <ui-select multiple ng-model="question.nested.if" class="fixed-width-select" theme="bootstrap">
+                          <ui-select-match placeholder="If Answer(s)...">
+                            <span ng-bind="$item"></span>
+                          </ui-select-match>
+                          <ui-select-choices
+                            repeat="scale in ([1,2,3,4,5,6,7,8,9,10] | filter: $select.search)">
+                            <span ng-bind="scale"></span>
+                          </ui-select-choices>
+                        </ui-select>
+                      </span>
+
+                      <span ng-if="question.inputType.type == 'emotion'">
+                        <ui-select multiple ng-model="question.nested.if" class="fixed-width-select" theme="bootstrap">
+                          <ui-select-match placeholder="If Answer(s)...">
+                            <span ng-bind="$item"></span>
+                          </ui-select-match>
+                          <ui-select-choices
+                            repeat="emotion in (['sad', 'neutral', 'happy'] | filter: $select.search)">
+                            <span ng-bind="emotion"></span>
+                          </ui-select-choices>
+                        </ui-select>
+                      </span>
+                    </label>
+                  </span>
+                </div>
+                <div class="row">
+                  <ui-select ng-model="question.inputType" class="fixed-width-select">
+                    <ui-select-match placeholder="Input Type">
+                      <span ng-bind="$select.selected.name"></span>
+                    </ui-select-match>
+                    <ui-select-choices
+                      repeat="item in (vm.questionInputTypes | filter: $select.search) track by $index">
+                      <span ng-bind="item.name"></span>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+                <div class="row">
+                  <label class="question-label">QUESTION: </label>
+                  <textarea class="form-control"
+                            cols="30"
+                            rows="6" ng-model="question.name">
+                  </textarea>
+                  <div ng-if="question.inputType.type == 'radioButtons'">
+                    <div ng-repeat="radioOption in question.radioOptions">
+                      <label class="question-label">ANSWER {{vm.optionLetters[$index]}}: </label>
+                      <input type="text" class="form-control" ng-model="radioOption.name">
+
+                      <i class="fa fa-trash pull-right" ng-click="vm.removeRadioOption(question, $index)"></i>
+                    </div>
+                    <a href="" ng-click="vm.addRadioOption(question)"><i class="fa fa-plus"></i> Add Next Answer</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-3" ng-if="vm.survey.questions.length > 1 && !$first">
+                <i class="fa fa-trash" ng-click="vm.removeQuestion($index)"></i>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="col-xs-24">
+              <div class="row">
+              <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-plus fa-stack-1x"></i>
+                </span>
+                <a href="" ng-click="vm.addQuestion()">
+                  Add Next Question
+                </a>
+              </div>
+            </div>
+          </div>
+        </uib-accordion-group>
+      </uib-accordion>
+      <uib-accordion class="audience" ng-init="statusPageTargeting = {open: true}">
+        <uib-accordion-group is-open="statusPageTargeting.open" template-url="group-template.html">
+          <uib-accordion-heading>
+            <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-check fa-stack-1x"></i>
+                      </span>
+            <h4 class="subtitle">Page Targeting</h4>
+            <i class="pull-right fa"
+               ng-class="{'fa-caret-up': statusPageTargeting.open, 'fa-caret-down': !statusPageTargeting.open}"></i>
+          </uib-accordion-heading>
+          <div class="panel-body">
+            <div class="col-xs-24">
+              <p>Add a condition for the page(s) where the survey question will display.</p>
+            </div>
+            <query-builder group="vm.pageTargeting.group" allow="['SIMPLE', 'EXACT', 'STARTS', 'ENDS', 'CONTAINS', 'NOCONTAINS']"></query-builder>
+          </div>
+        </uib-accordion-group>
+      </uib-accordion>
+      <uib-accordion class="audience" ng-init="statusAudience = {open: true}">
+        <uib-accordion-group is-open="statusAudience.open" template-url="group-template.html">
+          <uib-accordion-heading>
+            <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-check fa-stack-1x"></i>
+                      </span>
+            <h4 class="subtitle">Audience</h4>
+            <i class="pull-right fa"
+               ng-class="{'fa-caret-up': statusAudience.open, 'fa-caret-down': !statusAudience.open}"></i>
+          </uib-accordion-heading>
+          <div class="panel-body">
+            <div class="col-xs-24">
+              <p>Add a condition for the page(s) where the survey question will display.</p>
+            </div>
+            <query-builder group="vm.filter.group" allow="['DEVICE', 'SOURCE', 'IP', 'LANG', 'VIS', 'LOCCON', 'COOKIE']"></query-builder>
+          </div>
+        </uib-accordion-group>
+      </uib-accordion>
+      <uib-accordion class="audience" ng-init="statusDisplay = {open: true}">
+        <uib-accordion-group is-open="statusDisplay.open" template-url="group-template.html">
+          <uib-accordion-heading>
+            <span class="fa-stack">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-check fa-stack-1x"></i>
+                      </span>
+            <h4 class="subtitle">Display</h4>
+            <i class="pull-right fa"
+               ng-class="{'fa-caret-up': statusDisplay.open, 'fa-caret-down': !statusDisplay.open}"></i>
+          </uib-accordion-heading>
+          <div class="panel-body">
+            <div class="col-xs-24">
+              <p>Add a condition for the page(s) where the survey question will display.</p>
+            </div>
+            <form class="form-inline">
+              <div class="row">
+                <div class="col-xs-24">
+                  <div class="col-xs-24 col-sm-10">
+                    <label for="start-date">Start Date:</label>
+                    <p class="input-group">
+                      <input id="start-date" type="date" class="form-control"
+                             uib-datepicker-popup="dd / MM / yy"
+                             show-weeks="false"
+                             ng-model="vm.survey.startDate"
+                             ng-click="vm.display.startDate.opened = true;"
+                             is-open="vm.display.startDate.opened"
+                             ng-required="true"
+                             close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.display.startDate.opened = true;">
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </span>
+                    </p>
+                  </div>
+                  <div class="col-xs-24 col-sm-10">
+                    <label for="end-date">End Date:</label>
+                    <p class="input-group">
+                      <input id="end-date" type="date" class="form-control"
+                             uib-datepicker-popup="dd / MM / yy"
+                             show-weeks="false"
+                             ng-model="vm.survey.endDate"
+                             ng-click="vm.display.endDate.opened = true;"
+                             is-open="vm.display.endDate.opened"
+                             ng-required="true"
+                             min-date="vm.survey.startDate"
+                             close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.display.endDate.opened = true;">
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-24 display-advanced">
+                  <div class="col-xs-24">
+                    <a href="" class="toggle-advanced-options" ng-click="vm.toggleAdvancedOptionsTab()"><i class="fa" ng-class="{'fa-caret-up': vm.showAdvancedOptions, 'fa-caret-down': !vm.showAdvancedOptions}"></i> Advanced Options</a>
+                  </div>
+                </div>
+              </div>
+              <div class="" id="advanced-options-tab" ng-show="vm.showAdvancedOptions">
+                <div class="row">
+                  <div class="col-xs-24 display-advanced">
+                    <div class="col-xs-24 col-sm-9">
+                      <label for="max-answers">Max Answers</label>
+                      <input type="number" min="0" step="1" ng-model="vm.survey.maxAnswers" id="max-answers" class="form-control">
+                    </div>
+                    <div class="col-xs-24 col-sm-9">
+                      <label for="max-views">Max Views</label>
+                      <input type="number" min="0" step="1" ng-model="vm.survey.maxViews" id="max-views" class="form-control">
+                    </div>
+                    <div class="col-xs-24 col-sm-6">
+                      <label for="answers-views-time">&nbsp;</label>
+                      <ui-select ng-model="vm.survey.answersAndViewsTime" id="answers-views-time" class="col-xs-24 full-width-select">
+                        <ui-select-match placeholder="Select">
+                          <span ng-bind="$select.selected.name"></span>
+                        </ui-select-match>
+                        <ui-select-choices
+                          repeat="item.code as item in vm.timePeriods | filter: $select.search track by $index">
+                          <span ng-bind="item.name"></span>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                  <div class="col-xs-24">
+                    <div class="col-xs-24">
+                      <p>Show when:</p>
+                    </div>
+                    <div class="col-xs-24 display-advanced">
+                      <div class="row">
+                        <div class="col-xs-24 col-sm-12">
+                          <label>
+                            <input type="checkbox" ng-value="true" ng-model="vm.survey.inPageTime.enabled">
+                            User is on the page for
+                          </label>
+                          <input type="number" min="0" step="1" class="form-control" ng-model="vm.survey.inPageTime.period">
+                        </div>
+                        <div class="box margin10top visible-xs-block"></div>
+                        <ui-select ng-model="vm.survey.inPageTime.format" class="col-xs-24 col-sm-6">
+                          <ui-select-match placeholder="Select">
+                            <span ng-bind="$select.selected.name"></span>
+                          </ui-select-match>
+                          <ui-select-choices
+                            repeat="item.code as item in vm.timeElapsedType | filter: $select.search track by $index">
+                            <span ng-bind="item.name"></span>
+                          </ui-select-choices>
+                        </ui-select>
+                      </div>
+                    </div>
+                    <div class="col-xs-24 display-advanced">
+                      <label><input type="checkbox" ng-model="vm.survey.cursorTrigger" ng-value="true" class=""> User moves his cursor out of the page</label>
+                    </div>
+                    <div class="col-xs-24 display-advanced">
+                      <label><input type="checkbox" ng-value="true" ng-model="vm.survey.numberOfPages.enabled"> User has been to</label> <input type="number" min="0" step="1" ng-model="vm.survey.numberOfPages.quantity" class="form-control"> pages
+                    </div>
+                    <div class="col-xs-24 display-advanced display-advanced-padding alert-danger">
+                      <label><input type="checkbox" ng-value="true" ng-model="vm.survey.skipFilters"> Invalidate all filters. I’ll use the API to show the survey when I want instead.</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </uib-accordion-group>
+      </uib-accordion>
+      <uib-accordion class="thankyou" ng-init="statusThankyou = {open: true}">
+        <uib-accordion-group panel-class="panel-default last" is-open="statusThankyou.open"
+                             template-url="group-template.html">
+          <uib-accordion-heading>
+            <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-check fa-stack-1x"></i>
+            </span>
+            <h4 class="subtitle">Thank you message</h4>
+            <i class="pull-right fa"
+               ng-class="{'fa-caret-up': statusThankyou.open, 'fa-caret-down': !statusThankyou.open}"></i>
+          </uib-accordion-heading>
+          <div class="panel-body">
+            <p>Below you can customize the message users will see upon completing this poll. </p>
+            <label>Enter your message </label>
+                            <textarea class="form-control" ng-model="vm.survey.thankYouMessage" name="thank-you-message"
+                                      id="thank-you-message" cols="30"
+                                      rows="6" placeholder="Thanks for your submission"></textarea>
+          </div>
+          <div class="panel-footer">
+            <div class="col-xs-24">
+              <div class="row text-right survey-footer">
+                <span class="link-box">
+                  <i class="fa fa-floppy-o"></i>
+                  <a href="" ng-click="vm.saveReviewSurvey()">Save & Review Details
+                  </a>
+                </span>
+                <span class="link-box">
+                  <i class="fa fa-floppy-o"></i>
+                  <a href="" ng-click="vm.saveSurvey()">
+                    Save & Start Later
+                  </a>
+                </span>
+                <button class="btn btn-lg btn-new btn-success" ng-click="vm.saveStartSurvey()">
+                  Start Survey <i class="fa fa-caret-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </uib-accordion-group>
+      </uib-accordion>
+    </div>
+    <div class="col-md-8 new__survey__body__summary">
+      <div class="panel panel-default new__survey__body__summary__preview">
+        <div class="panel-heading">
+          <label>Preview</label>
+          <ui-select ng-model="vm.previewQuestion" theme="bootstrap" id="survey-preview-select"
+                     on-select="vm.changeSurveyPreviewSelect($select.activeIndex)">
+            <ui-select-match>
+              <span> Q{{$select.activeIndex + 1}}. {{$select.selected.name}}</span>
+            </ui-select-match>
+            <ui-select-choices
+              repeat="item in (vm.survey.questions | filter: $select.search) track by $index">
+              <span> Q{{$index+1}}. {{item.name}}</span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="panel-body">
+          <survey-preview questions="vm.survey.questions"
+                          select-question-index="vm.previewQuestionIndex"></survey-preview>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()"
+             uib-accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" uib-collapse="!isOpen" ng-transclude>
+      </div>
+    </div>
+  </script>
+</div>

@@ -1,0 +1,803 @@
+<!doctype html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>alex.io: Micro Surveys for User Insights & Feedback</title>
+    <meta property="og:url"           content="http://www.alex.io" />
+    <meta property="og:type"          content="alex.io" />
+    <meta property="og:title"         content="alex.io: Micro Surveys for User Insights & Feedback" />
+    <meta property="og:description"   content="Use micro-surveys to learn how people think about buying from you, then use what you learn to make changes your site to make even more people buy from you!" />
+    <meta property="og:image"         content="http://alex.io/home/img/alexio_social.png" />
+    <meta name="description" content="Use micro-surveys to learn how people think about buying from you, then use what you learn to make changes to your site that make more people buy." />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="home/img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="home/img/apple-touch-icon-60x60.png">
+    <link rel="icon" type="image/png" href="home/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="home/img/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="../assets/manifest.json">
+    <link rel="mask-icon" href="home/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="alex.io">
+    <meta name="application-name" content="alex.io">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="home/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="home/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="home/css/style.css">
+    <link rel="stylesheet" type="text/css" href="home/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="home/css/libs/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="home/css/libs/fancybox.css">
+
+    <script src="home/js/libs/modernizr.js"></script>
+    <link rel="stylesheet" type="text/css" href="home/css/animations.css">
+    <!--Opitimizly plugin-->
+    <script src="https://cdn.optimizely.com/js/4059249487.js"></script>
+
+</head>
+<body>
+  <!--Google DataLayer-->
+  <script>dataLayer=[{'alexioRef': '{{user.referralId}}'}]</script>
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WVR2VT"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WVR2VT');</script>
+  <!-- End Google Tag Manager -->
+
+<div class="main-wrapper">
+  <div class="main-header">
+    <div class="site-container">
+      <span class="logo-wrap">
+        <a href="/" class="logo">alex<span>.io</span></a>
+        <span class="motto">Instant Micro-Surveys & Insights</span>
+      </span>
+      <a href="#" class="topnav-toggle">
+        <i class="icon"></i>
+        <span>Menu</span>
+      </a>
+      <div class="topnav-wrap">
+        <a href="#" class="nav-toggle-mobile"></a>
+        <nav class="auth-nav">
+          <a href="/dashboard" class="login">Login <i>&#8595;</i></a>
+          <a href="#" class="signup" data-toggle="modal" data-target="#free_access_popup">Signup</a>
+        </nav>
+        <ul class="topnav">
+          <li><a href="#" data-toggle="modal" data-target="#micro_surveys_modal">What Are Micro-Surveys?</a></li>
+          <li><a href="#" class="scroll-to" data-target="#question_formats">Question Formats</a></li>
+          <li><a href="#" class="scroll-to" data-target="#targeting_reporting">Targeting & Reporting</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- /.main-header -->
+  {{#if errorMessage}}
+  <div class="site-note warning visible">
+    {{errorMessage}}
+  </div>
+  {{/if}}
+  <div class="home-intro-wrap animated fadeIn">
+    <div class="site-container">
+      <h1 class="big-headline animated flipInYLight">
+        Get insights that <span>Increase Conversion, Revenue<br/> &amp;
+        Lifetime Value</span> with <span>Micro-Surveys</span>
+      </h1>
+      <h3 class="small-headline animated fadeIn">
+        Use micro-surveys to learn how people think about buying from you, then use what you<br/>
+        learn to make changes to your site to make even more people buy from you!
+      </h3>
+      <div class="request-access-wrap animated fadeInUpLight">
+        <div class="inner-wrap">
+          <img src="home/img/homepage_lock_icon.png" alt="Access" class="lock-img" />
+          <strong class="box-headline">Access to private Beta is by invitation only.<br/> Request access today.</strong>
+          {{#if alreadyRegistered}}
+          <h3 class="small-headline">You've already registered. Click the button below to check your position.</h3>
+          <form action="/referrals" method="POST" id="beta-access-form" class="access-form">
+              <input type="hidden" name="registered" value="true">
+              <input type="hidden" name="email" value="{{email}}">
+              <div class="box margin20top"></div>
+              <button type="submit" class="green-btn ask" style="float: none;"><span>Check your position</span></button>
+          </form>
+          {{else}}
+          <form action="/referrals" method="POST" id="beta-access-form" class="access-form">
+            <input name="email" type="email" class="field" placeholder="Your e-mail Here" autocomplete="off" required="">
+            <input type="hidden" name="referralId" value="{{referralId}}" id="refId">
+            <button type="submit" class="green-btn ask"><span>Request FREE Access</span></button>
+          </form>
+          <small class="note">Re-enter the email you used to sign up to check your position.</small>
+          {{/if}}
+        </div>
+      </div>
+      <!-- /.request-access-wrap -->
+      <div class="intro-features-wrap animated fadeIn">
+        <div class="col animated fadeInLeft">
+          <div class="heading-wrap">
+            <img src="home/img/content/optimize_experience.png" alt="Optimize Experience" />
+            <h5 class="section-headline"><span>OPTIMIZE YOUR USER EXPERIENCE</span></h5>
+          </div>
+          <ul class="intro-features-list wide">
+            <li>
+              <span>Discover</span>
+              <a class="ext ext_red" href="#" data-toggle="modal" data-target="#broken_modal">broken</a>
+              <span>website functionality</span>
+            </li>
+            <li>Discover usability issues</li>
+            <li>
+              <span>Understand your users'</span>
+              <a class="ext ext_red" href="#" data-toggle="modal" data-target="#frustrations_modal">frustrations</a>
+            </li>
+            <li>
+              <span>Get </span>
+              <a href="#" class="ext ext_red" data-toggle="modal" data-target="#actionable_modal">actionable</a>
+              <span> insights</span>
+            </li>
+          </ul>
+          <!-- /.intro-features-list -->
+        </div>
+        <div class="col animated fadeInRight">
+          <div class="heading-wrap">
+            <img src="home/img/content/alexio_is_for.png" alt="alex.io is Perfect" />
+            <h5 class="section-headline"><span>alex.IO IS PERFECT FOR...</span></h5>
+            <div class="desktop-features">
+              <ul class="intro-features-list small">
+                <li>Digital Marketers</li>
+                <li>UX &amp; UI Designers</li>
+                <li>Ecommerce</li>
+              </ul>
+              <ul class="intro-features-list medium">
+                <li>Web Managers &amp; Analysts</li>
+                <li>Agencies &amp; Consultancies</li>
+                <li>Conversion Rate Optimization</li>
+              </ul>
+            </div>
+            <!-- /.desktop-features -->
+            <div class="device-features">
+              <ul class="intro-features-list wide">
+                <li>Digital Marketers, UX &amp; UI Designers</li>
+                <li>Ecommerce, Web Managers &amp; Analysts</li>
+                <li>Agencies &amp; Consultancies</li>
+                <li>Conversion Rate Optimization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.home-intro-wrap -->
+
+  <section class="grey-info-wrap micro-surveys">
+    <div class="site-container animated-box" data-enter="zoomIn">
+      <div class="headline-col">
+        <img src="home/img/microsurvey_icon.png" alt="Micro Surveys" />
+        <h3 class="section-headline">What are <br> Micro-surveys?</h3>
+      </div>
+      <div class="text-col">
+        <p class="text"><strong>Micro-surveys are short and to the point</strong>. They only have one or two questions
+          and they're extremely targeted. This means that they're not only <strong>easy to answer</strong>,
+          but <strong>easy to create, implement</strong>, and...
+        </p>
+      </div>
+      <div class="btn-col">
+        <a href="#" class="read-more" data-toggle="modal" data-target="#micro_surveys_modal">
+          <i class="right-arrow-icon"></i>
+          <span>Read More</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- /.grey-info-wrap -->
+
+  <section class="how-to-wrap">
+    <div class="site-container">
+      <h2 class="section-headline animated-box" data-enter="fadeInDown">HOW TO USE INSIGHTS TO GROW YOUR REVENUE</h2>
+      <ul id="how_to_list" class="how-to-list">
+        <li class="animated-box" data-enter="flipInY">
+          <img src="home/img/content/how_to_img1.png" alt="Ask questions" />
+          <p class="text">
+            <strong>Ask questions</strong> of your users<br/> and
+            get insights into <strong>what<br/> makes them buy.</strong>
+          </p>
+          <i class="arrow"></i>
+        </li>
+        <li class="animated-box" data-enter="flipInY">
+          <img src="home/img/content/how_to_img2.png" alt="Tag & tabulate responses" />
+          <p class="text">
+            <strong>Tab & tabulate responses,</strong> then
+            quantify what you've learned.
+          </p>
+          <i class="arrow"></i>
+        </li>
+        <li class="animated-box" data-enter="flipInY">
+          <img src="home/img/content/how_to_img3.png" alt="Will increase conversion rate & revenue" />
+          <p class="text">
+            Use what you learned to <strong>change<br/> your website</strong>
+            in ways that<br/> will increase conversion rate<br/> & revenue.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- /.how-to-wrap -->
+
+  <section class="get-insights-wrap">
+    <div class="site-container">
+      <div class="headline-col">
+        <h2 class="section-headline">Get Insights that Make Your Business</h2>
+        <h3 class="section-headline grow">Grow</h3>
+      </div>
+      <div class="text-col">
+        <h5 class="small-headline">
+          Choose from our pre-written questions, engineered to yield powerful
+          insights for high-ROI changes you can make to your site.
+        </h5>
+        <p class="text">Are you ready to launch your first micro-survey?<span class="white">Click below:</span></p>
+        <a href="#" class="green-btn ask" data-toggle="modal" data-target="#free_access_popup"><span>Request FREE Access</span></a>
+        <span class="arrow-box animated-box" data-enter="leftPointer"></span>
+      </div>
+      <span class="scroll-to-formats-wrap">
+        <a href="#" class="scroll-down scroll-to" data-target="#questions">
+          <i class="arrow-down-icon"></i>
+          <span>Question Formats</span>
+        </a>
+      </span>
+    </div>
+  </section>
+  <!-- /.get-insights-wrap -->
+
+  <section id="question_formats" class="grey-info-wrap">
+    <div class="site-container">
+      <img src="home/img/content/qpres_header.png" alt="Question Formats" />
+      <h3 class="section-headline"><span>WHAT QUESTION FORMATS ARE THERE?</span></h3>
+    </div>
+  </section>
+  <!-- /.grey-info-wrap -->
+
+  <section id="questions" class="question-formats-wrap">
+    <div class="site-container">
+      <div id="questions_list">
+        <div class="infobox-with-image mob-collapse">
+          <div class="info-col right collapse-box animated-box" data-enter="fadeInRight">
+            <img src="home/img/content/qpres_scale.png" alt="Scale Question" />
+            <h3 class="box-headline">Scale Question</h3>
+            <div id="q_panel_1" class="collapse-panel" data-mobile-height="100">
+              <div class="inner-panel">
+                <p class="text">
+                  This is useful for conducting Net Promoter Score analysis. With this question format,
+                  you can ask a user to rate something, for example, "On a scale of 1 to 10, how easy was
+                  our checkout process?" The responses to this question will definitely help you determine
+                  if your checkout or on-boarding experience need usability improvements.
+                </p>
+              </div>
+            </div>
+            <div class="learn-more-wrap">
+              <a href="#" class="learn-more" data-collapse-target="#q_panel_1">
+                <span>Learn More</span>
+                <i class="arrow"></i>
+              </a>
+            </div>
+          </div>
+          <aside class="img-col left animated-box" data-enter="slideInUp">
+            <img src="home/img/content/qpres_scale_Q_2.png" alt="Scale Question" />
+          </aside>
+        </div>
+        <!-- /.infobox -->
+        <div class="infobox-with-image">
+          <div class="info-col left collapse-box animated-box" data-enter="fadeInLeft">
+            <img src="home/img/content/qpres_open.png" alt="Open Response" />
+            <h3 class="box-headline">Open Response Question</h3>
+            <div id="q_panel_2" class="collapse-panel" data-mobile-height="100">
+              <div class="inner-panel">
+                <p class="text">
+                  You can use this type of questions to ask your users open-ended questions, and allow
+                  them to type in their responses. These questions are VERY valuable for generating insights
+                  to help you understand what's preventing your users from buying (objections), or what benefits
+                  they are experiencing from your product/service. These questions can also help you discover
+                  possible usability issue or broken things on your site by asking "is there anything on this
+                  site that's not working according to your expectation?"
+                </p>
+              </div>
+            </div>
+            <div class="learn-more-wrap">
+              <a href="#" class="learn-more" data-collapse-target="#q_panel_2">
+                <span>Learn More</span>
+                <i class="arrow"></i>
+              </a>
+            </div>
+          </div>
+          <aside class="img-col right animated-box" data-enter="slideInUp">
+            <img src="home/img/content/qpres_open_Q_2.png" alt="Open Response" />
+          </aside>
+        </div>
+        <!-- /.infobox -->
+        <div class="infobox-with-image">
+          <div class="info-col right collapse-box animated-box" data-enter="fadeInRight">
+            <img src="home/img/content/qpres_emotion.png" alt="Emotion" />
+            <h3 class="box-headline">Emotion Response Question</h3>
+            <div id="q_panel_3" class="collapse-panel" data-mobile-height="100">
+              <div class="inner-panel">
+                <p class="text">
+                  This is an easy, no friction way to gauge how your user feels about their experience on
+                  your site. This type of questions will help you figure out whether a certain part of your
+                  site frustrates or delights them, or if they don't really care about it at all. From the
+                  insight you get here, you can craft your next micro survey to more deeply explore issues
+                  that are either frustrate or delight users. For example if you suspect users are having a
+                  hard time finding the right product after searching on an ecommerce store, you can use this
+                  question format to learn how the user feels about the search results they saw. Over time, you
+                  can use this data to improve products listed in search results.
+                </p>
+              </div>
+            </div>
+            <div class="learn-more-wrap">
+              <a href="#" class="learn-more" data-collapse-target="#q_panel_3">
+                <span>Learn More</span>
+                <i class="arrow"></i>
+              </a>
+            </div>
+          </div>
+          <aside class="img-col left animated-box" data-enter="slideInUp">
+            <img src="home/img/content/qpres_emoji_Q.png" alt="Emotion" />
+          </aside>
+        </div>
+        <!-- /.infobox -->
+        <div class="infobox-with-image">
+          <div class="info-col left collapse-box animated-box" data-enter="fadeInLeft">
+            <img src="home/img/content/qpres_multiple.png" alt="Multiple Choice" />
+            <h3 class="box-headline">Multiple Choice Question</h3>
+            <div id="q_panel_4" class="collapse-panel" data-height="230" data-mobile-height="100">
+              <div class="inner-panel">
+                <p class="text">
+                  Ask your users multiple-choice questions to learn what benefits of your product/service they
+                  think are most important, and a slew of other things. Multiple-choice questions are very useful
+                  to "quantify" what you've discovered in open response format questions. If your users give open
+                  format responses that fall into roughly 4 categories, you can run a follow up micro-survey with
+                  a multiple choice question based on what you've learned. Imagine how powerful this is when you're
+                  asking about benefits you can communicate on your site, and you're wondering what order you should
+                  communicate those benefits in. You simply allow your users to "vote" and then make sure to mention
+                  these most popular benefits in your headline. That's data-driven copywriting.
+                </p>
+              </div>
+            </div>
+            <div class="learn-more-wrap">
+              <a href="#" class="learn-more" data-collapse-target="#q_panel_4">
+                <span>Learn More</span>
+                <i class="arrow"></i>
+              </a>
+            </div>
+          </div>
+          <aside class="img-col right multiple-choice animated-box" data-enter="slideInUp">
+            <img src="home/img/content/qpres_multi_Q_2.png" alt="Multiple Choice" />
+          </aside>
+        </div>
+        <!-- /.infobox -->
+      </div>
+    </div>
+  </section>
+  <!-- /.question-formats-wrap -->
+
+  <section class="get-insights-wrap">
+    <div class="site-container">
+      <div class="headline-col">
+        <h2 class="section-headline">Get Insights that Make Your Business</h2>
+        <h3 class="section-headline grow">Grow</h3>
+      </div>
+      <div class="text-col">
+        <h5 class="small-headline">
+          Choose from our pre-written questions, engineered to yield powerful
+          insights for high-ROI changes you can make to your site.
+        </h5>
+        <p class="text">Are you ready to launch your first micro-survey?<span class="white">Click below:</span></p>
+        <a href="#" class="green-btn ask" data-toggle="modal" data-target="#free_access_popup"><span>Request FREE Access</span></a>
+        <span class="arrow-box animated-box" data-enter="leftPointer"></span>
+      </div>
+    </div>
+  </section>
+  <!-- /.get-insights-wrap -->
+
+  <section id="targeting_reporting" class="grey-info-wrap targeting">
+    <div class="site-container">
+      <img src="home/img/content/target_header.png" alt="TARGETING" />
+      <h3 class="section-headline"><span>TARGETING, REPORTING & CUSTOMIZING MICRO-SURVEYS</span></h3>
+    </div>
+  </section>
+  <!-- /.grey-info-wrap -->
+
+  <section class="targeting-wrap">
+    <div class="site-container">
+      <div class="infobox-with-image mob-collapse animated-box" data-enter="fadeInUp">
+        <div class="info-col left collapse-box">
+          <img src="home/img/targeting_icon_1.png" alt="Targeting Like a Pro" class="icon" />
+          <h3 class="box-headline"><span>Targeting Like a Pro: Target a Page, Groups of Pages, or Traffic Sources</span></h3>
+          <div id="survey_panel_1" class="collapse-panel">
+            <div class="inner-panel">
+              <p class="text">
+                You can target who sees surveys based on a lot of different factors. First you can target by URL, and
+                match by regex, so you can target complex URL structures. You can also target based on stuff like traffic
+                source (people coming from SEO, Adwords paid search, or social media). We also allow you to target
+                by audience factors, like device type (desktop vs. mobile) or IP address. Sign up for your free trial
+                today, and check out our targeting features.
+              </p>
+            </div>
+          </div>
+          <div class="learn-more-wrap">
+            <a href="#" class="learn-more" data-collapse-target="#survey_panel_1">
+              <span>Learn More</span>
+              <i class="arrow"></i>
+            </a>
+          </div>
+        </div>
+        <aside class="img-col right">
+          <a class="fancybox" rel="targeting_images" href="home/img/content/targeting_img1_modal.jpg">
+            <img src="home/img/content/targeting_img1.png" alt="Targeting Like a Pro: Target a Page, Groups of Pages, or Traffic Sources" />
+          </a>
+        </aside>
+      </div>
+      <!-- /.infobox -->
+      <div class="infobox-with-image mob-collapse animated-box" data-enter="fadeInUp">
+        <div class="info-col right collapse-box">
+          <img src="home/img/targeting_icon_2.png" alt="Google Analytics Integration" class="icon" />
+          <h3 class="box-headline"><span>Google Analytics Integration Closes the Gap Between Responses & Behavior</span></h3>
+          <div id="survey_panel_2" class="collapse-panel">
+            <div class="inner-panel">
+              <p class="text">
+                You can integrate your surveys with Google Analytics. As you ask questions of your users, and collect
+                data over time, you can learn about the differences between the people who buy from you and stay a long
+                time, or buy from you repeatedly, and the people who don't ever buy from you. You can then use that
+                knowledge to get even more people to buy from you.
+              </p>
+            </div>
+          </div>
+          <div class="learn-more-wrap">
+            <a href="#" class="learn-more" data-collapse-target="#survey_panel_2">
+              <span>Learn More</span>
+              <i class="arrow"></i>
+            </a>
+          </div>
+        </div>
+        <aside class="img-col left">
+          <a class="fancybox" rel="targeting_images" href="home/img/content/targeting_img2_modal.jpg">
+            <img src="home/img/content/targeting_img2.png" alt="Google Analytics Integration Closes the Gap Between Responses & Behavior" />
+          </a>
+        </aside>
+      </div>
+      <!-- /.infobox -->
+      <div class="infobox-with-image animated-box" data-enter="fadeInUp">
+        <div class="info-col left collapse-box">
+          <img src="home/img/targeting_icon_3.png" alt="Reporting, Tagging Responses" class="icon" />
+          <h3 class="box-headline"><span>Reporting, Tagging Responses,<br/>& Tabulating Qualitative Response Data</span></h3>
+          <div id="survey_panel_3" class="collapse-panel">
+            <div class="inner-panel">
+              <p class="text">
+                <strong>UNIQUE TO US</strong>, we let you tag and tabulate survey responses, so when you get open
+                format responses to a question like "What specs would you want to see added to this product page?"
+                you can review and tag related responses, then see what percentage of respondents gave similar answers.
+                For example, let's say you ask, "What's the main benefit you get from shopping at my-awesome-business.com?"
+                You can quickly learn what your users see as the benefits you offer, and then get some good ideas for
+                writing a new headline on your homepage. Get it? Yeah, we think that's pretty cool. Also, you get to
+                use our reporting dashboard, and you can export all responses to Excel fore more analyzing fun. ;)
+              </p>
+            </div>
+          </div>
+          <div class="learn-more-wrap">
+            <a href="#" class="learn-more" data-collapse-target="#survey_panel_3">
+              <span>Learn More</span>
+              <i class="arrow"></i>
+            </a>
+          </div>
+        </div>
+        <aside class="img-col right">
+          <a class="fancybox" rel="targeting_images" href="home/img/content/targeting_img3_modal.jpg">
+            <img src="home/img/content/targeting_img3.png" alt="Reporting, Tagging Responses & Tabulating Qualitative Response Data" />
+          </a>
+        </aside>
+      </div>
+      <!-- /.infobox -->
+      <div class="infobox-with-image branding mob-collapse animated-box" data-enter="fadeInUp">
+        <div class="info-col right collapse-box">
+          <img src="home/img/targeting_icon_4.png" alt="Branding & Customizing Colors" class="icon" />
+          <h3 class="box-headline"><span>Branding & Customizing Colors When Micro-Surveys Display</span></h3>
+          <div id="survey_panel_4" class="collapse-panel">
+            <div class="inner-panel">
+              <p class="text">
+                You can change the color of our surveys to match the color scheme of your site, if you'd like,
+                as well as other things about the appearance of our surveys to match with your brand. Sign up
+                and give this a try.
+              </p>
+            </div>
+          </div>
+          <div class="learn-more-wrap">
+            <a href="#" class="learn-more" data-collapse-target="#survey_panel_4">
+              <span>Learn More</span>
+              <i class="arrow"></i>
+            </a>
+          </div>
+        </div>
+        <aside class="img-col left">
+          <a class="fancybox" rel="targeting_images" href="home/img/content/targeting_img4_modal.jpg">
+            <img src="home/img/content/targeting_img4.png" alt="Branding & Customizing Colors When Micro-Surveys Display" />
+          </a>
+        </aside>
+      </div>
+      <!-- /.infobox -->
+    </div>
+    <div class="custom-rules-wrap">
+      <div class="site-container">
+        <div class="infobox-with-image animated-box" data-enter="fadeInUp">
+          <div class="info-col left collapse-box">
+            <img src="home/img/targeting_icon_5.png" alt="Custom Rules" class="icon" />
+            <h3 class="box-headline"><span>Custom Rules for When Micro-Surveys Get Triggered (Shown to the User)</span></h3>
+            <div id="survey_panel_5" class="collapse-panel">
+              <div class="inner-panel">
+                <p class="text">
+                  We allow you to "trigger" a survey based on how many seconds a user has been viewing a page (like
+                  for people who've been on a page for an unusually long amount of time). Also, when people have been
+                  to a certain number of pages, say 10 or more pages, a survey can look into what they are looking for.
+                  (Is it possible they're having trouble finding something?) You can also trigger surveys when it looks
+                  like they're going to leave your website (like when their mouse goes up to the "x" to close out of
+                  your site). There are more "triggering" rules, and you can mix, match, and combine them to come up
+                  with the perfect time to trigger a micro-survey to suit your needs.
+                </p>
+              </div>
+            </div>
+            <div class="learn-more-wrap">
+              <a href="#" class="learn-more" data-collapse-target="#survey_panel_5">
+                  <span>Learn More</span>
+                  <i class="arrow"></i>
+              </a>
+            </div>
+          </div>
+          <aside class="img-col right">
+            <a class="fancybox" rel="targeting_images" href="home/img/content/targeting_img5_modal.jpg">
+              <img src="home/img/content/targeting_img5.png" alt="Custom Rules for When Micro-Surveys Get Triggered (Shown to the User)" />
+            </a>
+          </aside>
+        </div>
+        <!-- /.infobox -->
+      </div>
+    </div>
+  </section>
+  <!-- /.question-formats-wrap -->
+
+  <section class="get-insights-wrap">
+    <div class="site-container">
+      <div class="headline-col">
+        <h2 class="section-headline">Get Insights that Make Your Business</h2>
+        <h3 class="section-headline grow">Grow</h3>
+      </div>
+      <div class="text-col">
+        <h5 class="small-headline">
+          Choose from our pre-written questions, engineered to yield powerful
+          insights for high-ROI changes that you can make to your site.
+        </h5>
+        <p class="text">Are you ready to launch your first micro-survey?<span class="white">Click below:</span></p>
+        <a href="#" class="green-btn ask" data-toggle="modal" data-target="#free_access_popup"><span>Request FREE Access</span></a>
+        <span class="arrow-box animated-box" data-enter="leftPointer"></span>
+      </div>
+    </div>
+  </section>
+  <!-- /.get-insights-wrap -->
+
+  <section class="how-setup-works-wrap">
+    <div class="site-container">
+      <div class="infobox-with-image">
+        <div class="info-col left animated-box" data-enter="fadeIn">
+          <img src="home/img/content/setup_icon1.png" alt="Setup" />
+          <h3 class="box-headline">HOW DOES<br/> SETUP WORK?</h3>
+          <p class="text">
+            The survey tools take <strong>less than 10 minutes to set up</strong>.
+            Just drop a code snippet in the global footer on your site.
+          </p>
+          <p class="text">
+            It's a <strong>small asynchronous JavaScript snippet</strong> hooked up to Amazon Web Services,
+            so it loads fast and it <strong>won't slow down your site</strong>.
+          </p>
+          <p class="text">
+            You can get a survey up and running within minutes, and you'll literally <strong>
+            see survey responses and money-making insights coming in INSTANTLY</strong>
+            from your website visitors.
+          </p>
+        </div>
+        <aside class="img-col right animated-box" data-enter="zoomInLight"><img src="home/img/survey-setup.png" alt="Multiple Choice" /></aside>
+      </div>
+      <!-- /.infobox -->
+    </div>
+  </section>
+  <!-- /.how-setup-works-wrap -->
+
+  <!--  *** Temporary Hidden
+  <section class="grey-info-wrap micro-surveys">
+    <div class="site-container">
+      <div class="headline-col">
+        <img src="home/img/setup_icon.png" alt="Micro Surveys" />
+        <h3 class="section-headline">What are <br> Micro-surveys?</h3>
+      </div>
+      <div class="text-col">
+        <p class="text"><strong>Micro-surveys are short and to the point</strong>. They only have one or two questions
+          and they're extremely targeted. This means that they're not only <strong>easy to answer</strong>,
+          but <strong>easy to create, implement</strong>, and...
+        </p>
+      </div>
+      <div class="btn-col">
+        <a href="#" class="read-more" data-toggle="modal" data-target="#micro_surveys_modal">
+          <i class="right-arrow-icon"></i>
+          <span>Read More</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  --->
+  <!-- /.grey-info-wrap -->
+
+  <footer class="main-footer">
+    <div class="site-container animated-box" data-enter="fadeInUp">
+      <span class="copy"><a href="/">alex.io</a> All rights reserved, 2016</span>
+      <nav class="bottom-nav">
+        <a href="/terms">Terms of Service</a>
+        <a href="/privacy">Privacy Policy</a>
+      </nav>
+      <a href="#" class="norton-link" data-toggle="modal" data-target="#mcafee_modal">
+        <img src="home/img/footer_mcafee.png" alt="McAfee" />
+      </a>
+    </div>
+  </footer>
+</div>
+
+<a href="#" class="scroll-top"></a>
+
+<div id="micro_surveys_modal" class="popup-wrapper">
+  <div class="popup-box micro-surveys">
+    <a href="#" class="close-popup"></a>
+    <div class="infobox-with-image">
+      <div class="info-col right">
+        <h3 class="big-headline">What are <span>Micro-surveys?</span></h3>
+        <p class="text">
+          Micro-surveys are short and to the point. They only have one or two questions and they’re
+          extremely targeted. This means that they’re not only easy to answer, but easy to create,
+          implement, and analyze.
+        </p>
+        <p class="text">
+          Imagine a micro-survey that asks “What prompted you to leave the registration page?” ---
+          sent to a user that just left the registration page. Now compare it to a broader, more
+          traditional survey that asks questions like “What is unappealing about our service?” several
+          weeks after the user had an interaction with your website. General questions, sent after the
+          fact, are difficult to answer. Users may be more likely to answer one quick question in-context,
+          while on your site, than a lengthy list of questions a week after their visit.
+        </p>
+        <p class="text">
+          Micro-surveys are a win/win: You spend less time creating and analyzing surveys, and
+          users are more likely to respond than to a traditional survey.
+        </p>
+      </div>
+      <aside class="img-col left"><img src="home/img/micro_surveys_modal_img.png" alt="Micro Surveys" /></aside>
+    </div>
+    <!-- /.infobox -->
+  </div>
+</div>
+<!-- /.popup-wrapper (micro-surveys) -->
+
+<div id="free_access_popup" class="popup-wrapper">
+  <div class="popup-box free-access">
+    <a href="#" class="close-popup"></a>
+    <aside class="free-access-wrap">
+      <h3 class="big-headline">
+        Request <span>FREE Beta<br/>Access</span> Today!
+      </h3>
+      {{#if alreadyRegistered}}
+      <h3 class="small-headline">You've already registered. Click the button below to check your position.</h3>
+      <form action="/referrals" method="POST" class="access-form">
+        <input type="hidden" name="registered" value="true">
+        <input type="hidden" name="email" value="{{email}}">
+        <button type="submit" class="green-btn ask modal-check-pos" style="float: none;"><span>Check your position</span></button>
+      </form>
+      {{else}}
+      <form action="/referrals" method="POST" class="access-form">
+        <input name="email" type="email" class="field" placeholder="Your e-mail Here" autocomplete="off" required="">
+        <input type="hidden" name="referralId" value="{{referralId}}">
+        <button type="submit" class="green-btn"><span>Request Now</span></button>
+      </form>
+      {{/if}}
+      <small class="note">
+        Access to private Beta by invitation only.<br/>
+        Request access today.
+      </small>
+    </aside>
+  </div>
+</div>
+<!-- /.popup-wrapper -->
+
+<div id="broken_modal" class="popup-wrapper">
+  <div class="popup-box white">
+    <a href="#" class="close-popup"></a>
+    <h5 class="modal-headline">Discover broken website functionality by asking users this question...</h5>
+    <p class="text">
+      We’ll tell you what browser and operating system your user was on.This
+      question will tell you what about your website is broken or malfunctioning:
+    </p>
+    <div class="col-box">
+      <div class="col-7">
+        <img src="home/img/popup_broken_1.jpg" alt="Discover broken website" />
+      </div>
+      <div class="col-5">
+        <div class="red-text-box">This user was on internet explorer 9, with a windows 7 operation system</div>
+        <div class="arrow-box"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.popup-wrapper -->
+
+<div id="actionable_modal" class="popup-wrapper">
+  <div class="popup-box white">
+    <a href="#" class="close-popup"></a>
+    <h5 class="modal-headline">Get Actionable Insights by asking users this question...</h5>
+    <p class="text">
+      You can set the survey to trigger when the user is about to abandon the site. Right
+      before they leave, this question will tell you why they got frustrated and decided
+      they were better off leaving your site. User's response will help you identify what
+      to fix.
+    </p>
+    <div class="col-box">
+      <div class="col-7">
+        <img src="home/img/popup_actionable_1.jpg" alt="Get Actionable Insights" />
+      </div>
+      <div class="col-5">
+        <div class="red-text-box">This user was on Chrome 33, with a Max OSX 11 operation system</div>
+        <div class="arrow-box"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.popup-wrapper -->
+
+<div id="frustrations_modal" class="popup-wrapper">
+  <div class="popup-box white frustrations">
+    <a href="#" class="close-popup"></a>
+    <h5 class="modal-headline">Understanding User Frustrations by asking users this question...</h5>
+    <p class="text">
+      You can set the survey to launch when the user has spent a long time on a page.
+      As the user goes through the text on your site, this question will tell you what a user is looking for.
+    </p>
+    <div class="col-box">
+      <div class="image-box col-6">
+        <img src="home/img/popup_frustation_a.jpg" alt="Understanding User Frustrations" />
+      </div>
+      <div class="image-box col-6">
+        <img src="home/img/popup_frustation_b.jpg" alt="Understanding User Frustrations" />
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- /.popup-wrapper -->
+
+<div id="mcafee_modal" class="popup-wrapper">
+  <div class="popup-box white norton">
+    <a href="#" class="close-popup"></a>
+    <h5 class="modal-headline">Safe and Secure</h5>
+    <p class="text">
+      Your experience on this site will be safe and secure.
+      If you do choose to buy today, you're covered by McAfee Secure's Protection Guarantee.
+      You get $100,000 in identity theft protection and restoration services when you buy from this website.
+      Look for the McAfee SECURE trustmark and stay safer when you click, download and buy online.
+    </p>
+    <div class="image-box margin20top">
+      <img src="home/img/mcafee_secure_logo.png" alt="McAfee" width="210" class="norton-img" />
+    </div>
+  </div>
+</div>
+  <!-- /.popup-wrapper -->
+<script type="text/javascript" src="home/js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="home/js/libs/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="home/js/libs/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="home/js/animate.js"></script>
+<script type="text/javascript" src="home/js/main.js"></script>
+<!--<script src="home/js/scripts.min.js"></script>-->
+<script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+<script type="text/javascript" src="//dev.alex.io/lib/tracker/client.min.js"></script>
+<script type="text/javascript">
+ window.alexioClient = new Tracker({uuid: '61778090-10dc-11e6-a262-db6a2a40304f'});
+</script>
+</body>
+</html>

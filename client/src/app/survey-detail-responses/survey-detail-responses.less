@@ -1,0 +1,146 @@
+.btn-check-reviewed{
+  padding: 8px;
+  .responsive(@screen-xs-max, {
+    float: left;
+    margin-top: 10px;
+  });
+}
+.export-btn {
+  .responsive(@screen-xs-max, {
+    margin-top: 10px;
+    width: 100%;
+    float: left;
+  });
+}
+
+.panel-headless{
+  border-color: #F1F1F1;
+  &--section{
+    border-bottom: 3px solid #F1F1F1;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    p, strong{
+      color: #63797a;
+    }
+    &:last-child{
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    &:first-child{
+      padding-top: 0;
+    }
+    .subtitle{
+      .fa{
+        color: #3795D6;
+      }
+    }
+  }
+}
+
+.nav-tabs {
+  margin-top: 20px;
+  text-decoration: none;
+  .responsive(@screen-xs-max, {
+    margin-top: 40px;
+  });
+  & > li {
+    &.sortBytag-tab{
+      float: right;
+    }
+    & > a {
+      .responsive(@screen-xs-max, {
+        padding-left: 10px;
+        padding-right: 10px;
+      });
+    }
+  }
+}
+.green-font{
+  color: #2ecc71;
+}
+
+.fa-close{
+  color: #E55A4A;
+}
+.btn-primary{
+  &--tags{
+    background: #767A7A;
+    color: white;
+    margin-bottom: 2px;
+  }
+}
+
+.btn-sm:hover, .btn-sm:active, .btn-sm:focus{
+  background: grey;
+  color: #FCFBFF;
+}
+
+.btn-md:hover, .btn-md:active, .btn-md:focus{
+  background: grey;
+  color: #FCFBFF;
+}
+
+.alexio-modal .modal-dialog{
+  max-width: 800px;
+  width: 100%;
+  .responsive(@screen-xs-max, {
+    margin-left: 0;
+    margin-right: 0;
+  });
+
+}
+
+.cancel-sortBytag-modal{
+  float: right;
+}
+
+.tag {
+  background: #767A7A;
+  border-radius: 3px 0 0 3px;
+  color: #fff;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+
+  input[type="text"]{
+    background: #767A7A;
+    border: none;
+    font-size: 10 px;
+    margin: 0;
+    height: inherit;;
+  }
+
+  input[type="text"]:focus, input[type="text"].focus{
+    border: none;
+    outline: none;
+  }
+
+}
+
+.tag::before {
+  background: transparent;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 13px solid #F8F8F8;
+  border-right: 10px solid #767A7A;
+  border-top: 13px solid #F8F8F8;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+}

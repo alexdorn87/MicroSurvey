@@ -1,0 +1,27 @@
+<div class="panel panel-stack panel-default panel-notification">
+  <div class="panel-heading">
+    <h4 class="subtitle">
+      <i class="fa fa-list-ul"></i>
+      General Notifications
+    </h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-24 notification-option" ng-repeat="notification in vm.generalNotifications">
+        <label>
+          <input type="checkbox" ng-model="vm.user.notifications[notification.key]" ng-change="vm.updateNotification(vm.user.notifications)"> {{notification.description}}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-stack panel-default">
+  <div class="panel-heading">
+    <h4 class="subtitle">
+      <i class="fa fa-list-ul"></i>
+      Other Notifications
+    </h4>
+  </div>
+  <!--<div class="panel-body">-->
+  <!--</div>-->
+</div>

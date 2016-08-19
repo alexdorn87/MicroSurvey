@@ -1,0 +1,158 @@
+<div class="row" id="main-navbar">
+  <!-- menus -->
+  <div class="logo">
+    <a ui-sref="home">
+      <span class="logo-text">alex<span>.io</span></span>
+    </a>
+  </div>
+  <button class="topnav-toggle" ng-click="$root.isNavActive = !$root.isNavActive" ng-class="{'active' : $root.isNavActive}">
+    <i class="icon fa"></i>
+    <span>Menu</span>
+  </button>
+  <div class="nav-wrap">
+    <div class="col-xs-24 col-sm-5 menu-block profile-menu right">
+      <div class="profile col-xs-18">
+        <table>
+          <tbody>
+          <tr>
+            <td>
+              <a href="#" ui-sref="home.profile.accountSettings">
+                <img gravatar-src="vm.user.email" class="img-circle" gravatar-size="40">
+              </a>
+            </td>
+            <td>
+              <a href="#" ui-sref="home.profile.accountSettings" style="margin-left: 5px;">
+                <span ng-if="!!vm.user.firstName">{{vm.user.firstName}}</span>
+                <span ng-if="!!vm.user.lastName">{{vm.user.lastName}}</span>
+                <span ng-if="!vm.user.lastName && !vm.user.firstName">Welcome</span>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-xs-6" uib-dropdown on-toggle="vm.toggled(open)">
+        <a href class="pull-right" uib-dropdown-toggle>
+          <i class="fa fa-cog"></i> <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="uib-dropdown-menu dropdown-menu-right animated fadeIn" ng-class="vm.profileMenuClass"
+            id="profile-menu-dropdown" aria-labelledby="simple-dropdown">
+          <li>
+            <a class="link" ui-sref-active="active" ui-sref="home.profile.accountSettings">Account Settings</a>
+            <a class="link" ui-sref-active="active" ui-sref="home.profile.sites">My sites</a>
+            <!--<a class="link" ui-sref-active="active" ui-sref="home.profile.planAndBilling">Plan & Billing</a>-->
+            <!--<a class="link" ui-sref-active="active" ui-sref="home.profile.notifications">Notifications</a>-->
+            <a class="link" ui-sref-active="active" ui-sref="home.profile.teams">Teams</a>
+            <a class="link" ui-sref-active="active" ui-sref="home.profile.users">Users</a>
+          </li>
+          <!--<li class="secondary">-->
+          <!--<a class="link" href="#"><i class="fa fa-question-circle"></i> Help</a>-->
+          <!--</li>-->
+          <li class="secondary">
+            <a class="link" href="#" ng-click="vm.logout();"><i class="fa fa-sign-out"></i> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Teams dropdown -->
+    <div class="col-xs-24 col-sm-4 menu-block domain-selector">
+      <ui-select ng-model="vm.teams.selected"
+                 on-select="vm.changeTeam($item, $model)"
+                 theme="bootstrap">
+        <ui-select-match>
+          <span ng-bind="$select.selected.name"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="item in vm.teams.items">
+          <span ng-bind="item.name"></span>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <!-- /Teams dropdown -->
+    <!-- Domains dropdown -->
+    <div class="col-xs-24 col-sm-4 menu-block domain-selector">
+      <ui-select ng-model="vm.domains.selected" ng-change="vm.changeDomain()" theme="bootstrap">
+        <ui-select-match>
+          <span ng-bind="$select.selected.name"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="item in vm.domains.items">
+          <span ng-bind="item.name"></span>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <!-- /Domains dropdown -->
+    <div class="col-xs-24 col-sm-8 menu-block right">
+      <a ui-sref="home.surveys({reload: true})" ui-sref-active-eq="active">My Surveys</a>
+      <a ui-sref="home" ui-sref-active-eq="active">Dashboard</a>
+      <button class="btn btn-success btn-lg btn-new" ui-sref="home.surveyCreate"
+              ng-hide="$state.includes('home.surveyCreate')">
+        Create New Survey
+      </button>
+    </div>
+  </div>
+</div>
+
+  <!--<div class="nav-wrap">-->
+    <!--<div class="col-xs-24 col-md-5 menu-block profile-menu right">-->
+      <!--<div class="row">-->
+        <!--<div class="profile col-xs-18">-->
+          <!--<table>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+              <!--<td>-->
+                <!--<a href="#" ui-sref="home.profile.accountSettings">-->
+                  <!--<img gravatar-src="vm.user.email" class="img-circle" gravatar-size="40">-->
+                <!--</a>-->
+              <!--</td>-->
+              <!--<td>-->
+                <!--<a href="#" ui-sref="home.profile.accountSettings" style="margin-left: 5px;">-->
+                  <!--<span ng-if="!!vm.user.firstName">{{vm.user.firstName}}</span>-->
+                  <!--<span ng-if="!!vm.user.lastName">{{vm.user.lastName}}</span>-->
+                  <!--<span ng-if="!vm.user.lastName && !vm.user.firstName">Welcome</span>-->
+                <!--</a>-->
+              <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+          <!--</table>-->
+        <!--</div>-->
+        <!--<div class="col-xs-6" uib-dropdown on-toggle="vm.toggled(open)">-->
+          <!--<a href class="pull-right" uib-dropdown-toggle>-->
+            <!--<i class="fa fa-cog"></i> <i class="fa fa-caret-down"></i>-->
+          <!--</a>-->
+          <!--<ul class="uib-dropdown-menu dropdown-menu-right animated fadeIn" ng-class="vm.profileMenuClass"-->
+              <!--id="profile-menu-dropdown" aria-labelledby="simple-dropdown">-->
+            <!--<li>-->
+              <!--<a class="link" ui-sref-active="active" ui-sref="home.profile.accountSettings">Account Settings</a>-->
+              <!--<a class="link" ui-sref-active="active" ui-sref="home.profile.sites">My sites</a>-->
+              <!--&lt;!&ndash;<a class="link" ui-sref-active="active" ui-sref="home.profile.planAndBilling">Plan & Billing</a>&ndash;&gt;-->
+              <!--&lt;!&ndash;<a class="link" ui-sref-active="active" ui-sref="home.profile.notifications">Notifications</a>&ndash;&gt;-->
+              <!--&lt;!&ndash;<a class="link" ui-sref-active="active" ui-sref="home.profile.users">Users</a>&ndash;&gt;-->
+            <!--</li>-->
+            <!--&lt;!&ndash;<li class="secondary">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="link" href="#"><i class="fa fa-question-circle"></i> Help</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--<li class="secondary">-->
+              <!--<a class="link" href="#" ng-click="vm.logout();"><i class="fa fa-sign-out"></i> Logout</a>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-xs-24 col-md-5 menu-block domain-selector">-->
+      <!--<ui-select ng-model="vm.domains.selected" ng-change="vm.changeDomain()" theme="bootstrap">-->
+        <!--<ui-select-match>-->
+          <!--<span ng-bind="$select.selected.name"></span>-->
+        <!--</ui-select-match>-->
+        <!--<ui-select-choices repeat="item in vm.domains.items">-->
+          <!--<span ng-bind="item.name"></span>-->
+        <!--</ui-select-choices>-->
+      <!--</ui-select>-->
+    <!--</div>-->
+    <!--<div class="col-xs-24 col-md-10 menu-block right">-->
+      <!--<a ui-sref="home.surveys({reload: true})" ui-sref-active-eq="active">My Surveys</a>-->
+      <!--<a ui-sref="home" ui-sref-active-eq="active">Dashboard</a>-->
+      <!--<button class="btn btn-success btn-lg btn-new" ui-sref="home.surveyCreate"-->
+              <!--ng-hide="$state.includes('home.surveyCreate')">-->
+        <!--Create New Survey-->
+      <!--</button>-->
+<!--&gt;>>>>>> develop-->
+

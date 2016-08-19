@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h3 class="modal-title">Email Instructions and tag</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+      <label for="sendTo">Send to:</label>
+      <input type="text"  id="sendTo" class="form-control" ng-model="vm.emailConfig.sendTo" placeholder="Send to email...">
+      <span class="help-block">Separate multiple email addresses with a comma.</span>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="vm.emailConfig.sendCopy"> Send a copy to my email address.
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="replyTo">Reply to:</label>
+      <input type="email" id="replyTo" class="form-control" ng-model="vm.emailConfig.replyTo" placeholder="Reply to email...">
+    </div>
+    <div class="form-group">
+      <label for="comments">Comments: (Optional)</label>
+      <textarea id="comments" name="comments" class="form-control" rows="7" ng-model="vm.emailConfig.comments"></textarea>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="vm.emailConfig.includeInstructions"> Include installation instructions.
+      </label>
+    </div>
+</div>
+<div class="modal-footer">
+  <a href="" ng-click="vm.cancel()">Cancel</a>
+  <button class="btn btn-primary" type="button" ng-click="vm.send()">Send</button>
+</div>

@@ -1,0 +1,55 @@
+{
+  "name": "fake Purchase stopping reasons",
+  "filters": [
+    {
+      "relation": "and",
+      "type": "DEVICE",
+      "value": [
+        "Mobile"
+      ]
+    },
+    {
+      "relation": "and",
+      "type": "SOURCE",
+      "value": [
+        "SEO",
+        "Default"
+      ]
+    },
+    {
+      "type": "IP",
+      "value": []
+    }
+  ],
+  "parameters": {
+    "TTO": {
+      "code": "TTO",
+      "value": 2000
+    },
+    "COOKIE": {
+      "code": "TTO",
+      "value": "Some COOKIE weird value"
+    }
+  },
+  "questions": [
+    {
+      "name": "fake What almost stopped you from completing your purchase?",
+      "placeholder": "I've..."
+    },
+    {
+      "name": "fake What almost stopped?",
+      "placeholder": "I've..."
+    },
+    {
+      "name": "fake What from completing your purchase?",
+      "placeholder": "I've..."
+    }
+  ],
+  "buttons": [
+    {
+      "name": "fake button"
+    }
+  ],
+  "id": 2,
+  "domainId": 1
+}

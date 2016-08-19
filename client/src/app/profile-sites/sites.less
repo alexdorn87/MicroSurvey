@@ -1,0 +1,60 @@
+.striped{
+  .even{
+    background: #EAEDEF;
+  }
+  .odd{
+    background: #F1F4F5;
+  }
+  .even, .odd{
+    padding: 15px;
+
+    .url{
+      .bold;
+    }
+  }
+  margin-bottom: 15px;
+}
+
+@counter-size: 16px;
+.counter{
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: @btn-primary-bg;
+  width: @counter-size;
+  height: @counter-size;
+  display: inline-block;
+  &.counter-circle{
+    color: white;
+    text-align: center;
+    font-size: 10px;
+  }
+}
+
+.panel-sites{
+  .panel-body{
+    padding-top: 0;
+  }
+
+  .sites-selector{
+    ul {
+      padding: 0;
+      list-style: none;
+      li{
+        padding: 20px;
+        border-bottom: 1px solid #D4D8D9;
+        border-right: 1px solid #D4D8D9;
+        background: #E7EBEE;
+        color: #667175;
+        .semibold;
+        cursor: pointer;
+        &.active{
+          color: #3595DE;
+          border-left: 2px solid #3595DE;
+          border-right: none;
+          background: #F2F5F6;
+        }
+      }
+    }
+  }
+}

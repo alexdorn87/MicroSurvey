@@ -1,0 +1,140 @@
+.my__surveys {
+
+  &__header {
+    .semibold;
+    text-transform: uppercase;
+    font-size: 14px;
+    overflow: hidden;
+    &__title {
+      color: #798d8d;
+      white-space: nowrap;
+    }
+  }
+  &__body {
+    padding: 0 15px;
+    &__row {
+      border-bottom: 1px solid #ccc;
+      background: white;
+      height: 60px;
+      font-size: 1.1em;
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+    &__field {
+      .regular;
+      //background: #fff;
+      padding-bottom: 15px;
+      padding-top: 15px;
+      height: 60px;
+      line-height: 2.1em;
+      &--strong{
+        color: #63797a;
+        font-size: 14px;
+      }
+
+      a{
+        color: #798d8d;
+        .responsive(@screen-md, {
+          white-space: nowrap;
+          max-width: 100%;
+          overflow: hidden;
+          float: left;
+          text-overflow: ellipsis;
+        });
+        &:hover{
+          color: #337ab7;
+          /*Remove underlink for survey's in list.*/
+          text-decoration: none;
+        }
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+      &--action {
+        text-align: center;
+        position: relative;
+        .responsive(@screen-md, {
+          left: -10px;
+        });
+        .responsive(@screen-xs-max, {
+          left: 0;
+        });
+        .fa{
+          //color: @btn-primary-border;
+          color: #B3BDBC;
+          cursor: pointer;
+          font-size: 1.1em;
+          &:hover{
+            color: #337ab7;
+          }
+        }
+        .fa.fa-trash{
+          &:hover{
+            color: #a94442;
+          }
+        }
+      }
+      .switch{
+        &.on{
+          .status{
+          color: #2ecc71;
+          }
+        }
+        &.off{
+          .status{
+          color: #63797a;
+          }
+        }
+      }
+      .status {
+        .responsive(@screen-md-max, {
+         display: none;
+        });
+      }
+    }
+  }
+}
+
+/*Removed underlink for responses text.*/
+.my__surveys{
+  &__header{
+    &__title{
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/*=== Small screens ===*/
+@media screen and (max-width: @screen-xs-max) {
+  .my__surveys__header {display: none;}
+  .my__surveys__body__row {
+    float: left;
+    width: 100%;
+    border-bottom: 1px dashed #aaa;
+    height: auto;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .my__surveys__body__field {
+    text-align: left;
+    height: auto;
+    padding: 3px 0;
+    &:before {
+      content: attr(data-label);
+      display: block;
+      float: left;
+      width: 100px;
+      font: 400 14px/1 @font_medium;
+      color: #222;
+      margin-top: 10px;
+    }
+    .status {
+      display: inline-block !important;
+    }
+  }
+}

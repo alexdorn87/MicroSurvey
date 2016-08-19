@@ -1,0 +1,19 @@
+<div class="panel panel-default" ui-view>
+  <div class="panel-heading">
+    <h4 class="subtitle">
+      <i class="fa fa-users"></i>
+      Users
+    </h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-18">
+        <ul>
+          <li ng-repeat="team in vm.teams">
+            {{team.name}} <button class="btn btn-primary" ui-sref="home.profile.users.detail({teamId: team.id})">Manage Users</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "AccessToken": {
+    "dataSource": "postgresql",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "postgresql",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "postgresql",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "postgresql",
+    "public": false
+  },
+  "Domain": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "AuthUser": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "Survey": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "SurveyResponse": {
+    "dataSource": "responses",
+    "public": true
+  },
+  "TrackerData": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "AccountType": {
+    "dataSource": "postgresql",
+    "public": false
+  },
+  "ReferralUser": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "email": {
+    "dataSource": "sendgrid",
+    "public": true
+  },
+  "EmailTemplate": {
+    "dataSource": "sendgrid",
+    "public": false
+  },
+  "survey-view": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "survey-visit": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "Notifications": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "survey-minimize": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "Team": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "Account": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "Plan": {
+    "dataSource": "postgresql",
+    "public": true
+  },
+  "Invitation": {
+    "dataSource": "postgresql",
+    "public": true
+  }
+}

@@ -1,0 +1,50 @@
+<div class="view-content view-survey-details">
+  <div class="menu-block">
+    <div class="row sub-header secondary-menu">
+      <form class="action-menu col-xs-24">
+        <div class="secondary-menu__item form-group col-xs-24 col-sm-12 survey-name">
+          <a href="#" class="back" ui-sref="home.surveys"><i class="fa fa-chevron-left"></i> <h4 class="subtitle inline-block">{{vm.survey.name}}</h4></a>
+
+        </div>
+        <!--<div class="secondary-menu__item secondary-menu__item--no-block form-group col-xs-12 col-sm-7">-->
+        <!--<div class="survey__toggle pull-right">-->
+            <!--<div class="label-text">-->
+              <!--Survey Status-->
+            <!--</div>-->
+            <!--<div class="switch">-->
+              <!--<input id="toggle_{{survey.id}}" class="toggle" type="checkbox">-->
+              <!--<label for="toggle_{{survey.id}}" class="" ng-click="vm.toggleSurvey(survey)">-->
+              <!--</label>-->
+
+              <!--<div class="status">-->
+                <!--{{survey.status || 'off'}}-->
+              <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="secondary-menu__item secondary-menu__item--action-block form-group col-xs-24 col-sm-12 col-sm-5 right text-right">
+          <!--<i class="fa fa-share-alt"></i>-->
+          <div class="action-btn-group">
+            <a href="#" ng-click="vm.remove(vm.survey)"><i class="fa fa-trash" uib-tooltip="Delete Survey" tooltip-append-to-body="true"></i></a>
+            <a href="#" ui-sref="home.surveyEdit({id: vm.survey.id, domainId: vm.survey.domainId})"><i class="fa fa-edit" uib-tooltip="Edit Survey" tooltip-append-to-body="true"></i></a>
+            <a href="#" ng-click="vm.copy(vm.survey)"><i class="fa fa-copy" uib-tooltip="Copy Survey" tooltip-append-to-body="true"></i></a>
+          </div>
+          <!--<button class="btn btn-lg btn-new btn-dull" ng-click="vm.saveSurvey()"><i class="fa fa-search"></i> Preview</button>-->
+        </div>
+      </form>
+    </div>
+    <nav class="navbar navbar-default secondary-menu-lower">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li class="secondary-menu__item" ui-sref-active="active"><a ui-sref="home.surveyDetail.summary">Survey
+            Summary</a></li>
+          <li class="secondary-menu__item" ui-sref-active="active"><a ui-sref="home.surveyDetail.details">Details</a>
+          </li>
+          <li class="secondary-menu__item" ui-sref-active="active"><a ui-sref="home.surveyDetail.responses">Responses</a></li>
+          <!--<li class="secondary-menu__item" ui-sref-active="active"><a ui-sref="home.surveyDetail.report">Report</a></li>-->
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="tab-body col-xs-24" ui-view></div>
+</div>

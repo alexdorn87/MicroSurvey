@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-xs-24 site-inner-block">
+    <h4>
+      <i class="fa fa-globe"></i> Website Address
+    </h4>
+    <div class="row">
+      <div class="col-xs-20">
+      <input type="text" class="form-control" ng-model="vm.domain.url" disabled>
+      </div>
+      <div class="col-xs-4 delete-domain">
+        <i class="fa fa-trash" ng-click="vm.deleteDomain(vm.domain)"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-24 site-inner-block">
+    <h4>
+      <i class="fa fa-map-marker"></i> Tracking Code
+    </h4>
+    <div class="script-block">
+      <small>alexIO SCRIPT</small>
+    <pre ng-bind-html="vm.snippet"></pre>
+    </div>
+    <div>
+      <button class="btn btn-new btn-dull btn-lg xs-full-width margin5bottom" ng-click="vm.openSendToDeveloper()"><i class="fa fa-send"></i> SEND TO A DEVELOPER</button>
+      <button class="btn btn-new btn-dull btn-lg pull-right xs-full-width margin5bottom"
+              ng-if="!vm.domain.isVerified"
+              ng-click="vm.verifyDomain(vm.domain)">
+        <i class="fa fa-square-o"></i> VERIFY CODE WAS INSTALLED CORRECTLY</button>
+      <button class="btn btn-new btn-success btn-lg pull-right xs-full-width margin5bottom"
+              ng-if="vm.domain.isVerified">
+        <i class="fa fa-check-square-o"></i> THE CODE WAS INSTALLED CORRECTLY</button>
+    </div>
+  </div>
+  <div class="col-xs-24">
+  </div>
+  <!--<div class="col-xs-24">-->
+    <!--<h4>-->
+      <!--<i class="fa fa-google"></i> Google Analytics-->
+    <!--</h4>-->
+    <!--<p>-->
+      <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consectetur eligendi libero odit repellat similique voluptate! Consequuntur cumque deleniti dignissimos eaque est hic laboriosam odit quisquam veniam, vero? Error, velit.-->
+    <!--</p>-->
+  <!--</div>-->
+</div>

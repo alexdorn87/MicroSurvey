@@ -1,0 +1,186 @@
+<!doctype html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+  <title>alex.io: Micro Surveys for User Insights & Feedback</title>
+  <meta property="og:url"           content="http://alex.io/r/{{user.referralId}}" />
+  <meta property="og:title"         content="alex.io: Micro Surveys for User Insights & Feedback" />
+  <meta property="og:description"   content="Use micro-surveys to learn how people think about buying from you, then use what you learn to make changes your site to make even more people buy from you!" />
+  <meta property="og:image"         content="http://alex.io/home/img/alexio_social.png" />
+  <!--<meta name="description" content="Use micro-surveys to learn how people think about buying from you, then use what you learn to make changes to your site that make more people buy." />-->
+
+  <link rel="apple-touch-icon" sizes="57x57" href="home/img/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="home/img/apple-touch-icon-60x60.png">
+  <link rel="icon" type="image/png" href="home/img/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="home/img/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="home/assets/manifest.json">
+  <link rel="mask-icon" href="home/img/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="apple-mobile-web-app-title" content="alex.io">
+  <meta name="application-name" content="alex.io">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" type="text/css" href="home/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="home/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="home/css/style.css">
+  <link rel="stylesheet" type="text/css" href="home/css/setup_steps.css">
+  <link rel="stylesheet" type="text/css" href="home/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="home/css/libs/jquery.bxslider.css">
+
+  <!--Opitmizly-->
+  <script src="https://cdn.optimizely.com/js/4059249487.js"></script>
+</head>
+<body>
+<!--Google DataLayer-->
+<script>dataLayer=[{'alexioRef': '{{user.referralId}}'}]</script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WVR2VT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WVR2VT');</script>
+<!-- End Google Tag Manager -->
+<div class="main-wrapper">
+<div class="main-header steps">
+  <div class="site-container">
+    <span class="logo-wrap">
+      <a href="/" class="logo">alex<span>.io</span></a>
+      <span class="motto">Instant Micro-Surveys & Insights</span>
+    </span>
+    <ul id="header_step_list" class="steps-list active_2">
+      <li class="one active">
+        <span class="step-wrap">
+          <i class="number">1</i>
+        </span>
+        <span class="text">Choose Question</span>
+      </li>
+      <li class="two active current last_3">
+        <div class="step-wrap">
+          <i class="number">2</i>
+          <div class="pointer-box">
+            <i class="pointer-arrow"></i>
+            <small class="note">You're here!</small>
+          </div>
+        </div>
+        <span class="text">Edit Question</span>
+      </li>
+      <li class="three last_2">
+        <div class="step-wrap">
+          <i class="number">3</i>
+        </div>
+        <span class="text">Account Details</span>
+      </li>
+      <li class="four last_1">
+        <div class="step-wrap">
+          <i class="number">4</i>
+        </div>
+        <span class="text">Free Beta</span>
+      </li>
+    </ul>
+    <a href="#" class="topnav-toggle">
+      <i class="icon"></i>
+      <span>Menu</span>
+    </a>
+    <div class="topnav-wrap">
+      <a href="#" class="nav-toggle-mobile"></a>
+      <nav class="auth-nav">
+        <a href="/dashboard" class="login">Login <i>&#8595;</i></a>
+      </nav>
+      <button class="green-btn two-line">
+        <span>Skip to</span>
+        <strong>Account Signup</strong>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- /.main-header -->
+
+<div class="setup-wrapper site-loaded" style="background-image: url(home/img/screenshot.jpg)">
+  <div class="site-container">
+    <section class="setup-wizard-wrap">
+      <header class="setup-header">
+        <aside class="greeting-box edit">
+          <h2 class="green-headline">Hi There!</h2>
+          <h1 class="big-headline">Let's Setup Your First Question</h1>
+          <p class="text blue">Get your first survey up & running in <strong>under 4 minutes</strong></p>
+          <span class="green-line"></span>
+          <div class="edit-question-box">
+            <div class="box">
+              <i class="cogwheel-icon"></i>
+              <strong class="md-headline">Edit Question Text:</strong>
+            </div>
+            <div class="textarea-wrap">
+              <textarea class="question-area" placeholder="Is there anything you'd want to know before buying, that we don't communicate on our site?"></textarea>
+            </div>
+          </div>
+        </aside>
+        <!-- /.greeting-box -->
+        <aside class="setup-login-box">
+          <span class="img-wrap"><img src="home/img/setup_img_3.png" alt="Question 1" /></span>
+          <button class="green-btn go" id="setup_account_login">Setup Account Login</button>
+        </aside>
+      </header>
+   </section>
+    <!-- /.setup-wizard-wrap -->
+  </div>
+</div>
+<!-- /.setup-wrapper -->
+
+<footer class="main-footer smaller">
+  <div class="site-container">
+    <span class="copy"><a href="/">alex.io</a> All rights reserved, 2016</span>
+    <nav class="bottom-nav">
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
+    </nav>
+    <a href="#" class="norton-link" data-toggle="modal" data-target="#norton_modal">
+      <img src="home/img/footer_norton.png" alt="Norton" />
+    </a>
+  </div>
+</footer>
+</div>
+
+<a href="#" class="scroll-top"></a>
+
+
+<!--Face book api-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Twitter code-->
+<script>
+  window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = [];
+    t.ready = function (f) {
+      t._e.push(f);
+    };
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+<!-- /Twitter code-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="home/js/libs/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="home/js/main.js"></script>
+<script type="text/javascript" src="home/js/setup_wizard.js"></script>
+<script type="text/javascript" src="home/js/referralJQ.js"></script>
+<script type="text/javascript" src="home/js/social-api.js"></script>
+<script src="https://apis.google.com/js/client.js"></script>
+</body>
+</html>

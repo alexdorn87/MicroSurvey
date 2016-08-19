@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="box">
+      <div class="col-xs-24">
+        <h4 class="subtitle">
+          <i class="fa fa-bars"></i>
+            &nbsp; Responses result for questions
+        </h4>
+      </div>
+      <div class="col-xs-24 col-sm-12 domain-selector">
+        <div class="ui-select-container ui-select-bootstrap dropdown" theme="bootstrap">
+          <ui-select ng-model="vm.survey.questions.selected" ng-change="vm.changeQuestion()" theme="bootstrap">
+            <ui-select-match>
+              <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="question in vm.survey.questions">
+                <span ng-bind="question.name"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="col-xs-24  col-sm-6">
+        <button class="btn btn-lg btn-new btn-primary export-btn" ng-csv="vm.getExportResponses()" filename="{{vm.survey.name}}_responses.csv"> Export to CSV &nbsp;<i class="fa fa-caret-right"></i></button>
+      </div>
+  </div>
+  <div class="col-xs-24">
+    <ul class="nav nav-tabs">
+      <li ui-sref-active="active"><a ui-sref="home.surveyDetail.responses.new">Not Reviewed <span class="green-font">({{vm.numNotReviewed}})</span></a></li>
+      <li ui-sref-active="active"><a ui-sref="home.surveyDetail.responses.all">All Reviewed</a></li>
+      <li class="sortBytag-tab">
+        <a ng-click="vm.sortByTags(vm.survey.questions.selected)">
+          <i class="fa fa-tag"></i>
+            <strong class="hidden-xs">Response by tags</strong>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--Beginning of Responses of respected catagory.-->
+<div ui-view></div>

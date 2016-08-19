@@ -1,0 +1,487 @@
+<style>
+  .alexio-wrapper {
+    display: inline-block !important;
+    position: fixed;
+  }
+  .alexio-wrapper * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .alexio-wrapper.right {
+    right: 50px !important;
+    bottom: 0;
+  }
+
+  .alexio-wrapper.left {
+    left: 50px !important;
+    bottom: 0;
+  }
+
+  .alexio-survey {
+    color: #fff;
+    border-top-left-radius: 3px;
+    position: relative;
+    width: 320px;
+    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .alexio-survey.alexio-survey-theme-blue {
+    background: #25394C;
+  }
+
+  .alexio-survey button, .alexio-survey input, .alexio-survey select, .alexio-survey textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .alexio-survey textarea {
+    overflow: auto;
+  }
+  .alexio-survey button, .alexio-survey input, .alexio-survey optgroup, .alexio-survey select,.alexio-survey textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+  }
+
+  .alexio-survey .alexio-survey-handle {
+    position: absolute;
+    right: 0px;
+    top: -20px;
+    color: #fff;
+    width: 45px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .alexio-survey.alexio-survey-theme-default .alexio-survey-handle {
+    background: #064261;
+    color: #7d9dad;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .alexio-survey.alexio-survey-theme-default .alexio-survey-handle:before{
+    display: block;
+    width: 0;
+    height: 0;
+    position: relative;
+  }
+
+
+  .alexio-survey.alexio-survey-theme-default .alexio-survey-handle.alexio-survey-handle-close:before {
+    content: '+';
+    left: 18px;
+  }
+
+  .alexio-survey.alexio-survey-theme-default .alexio-survey-handle.alexio-survey-handle-open:before {
+    content: '—';
+    left: 14px;
+  }
+
+  .alexio-survey.alexio-survey-theme-blue .alexio-survey-handle {
+    background: #25394C;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .alexio-survey.alexio-survey-theme-blue .alexio-survey-handle:before{
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    left: 18px;
+    top: 7px;
+    position: relative;
+  }
+
+  .alexio-survey.alexio-survey-theme-blue .alexio-survey-handle.alexio-survey-handle-close:before {
+    border-width: 0 4px 4px 4px;
+    border-color: transparent transparent #7C8C91 transparent;
+
+  }
+  .alexio-survey.alexio-survey-theme-blue .alexio-survey-handle.alexio-survey-handle-open:before {
+    border-width: 4px 4px 0 4px;
+    border-color: #7C8C91 transparent transparent transparent;
+  }
+
+  .alexio-survey .form-questions {
+    padding: 0;
+  }
+
+  .alexio-survey .survey-question {
+    margin: 0;
+    padding: 20px 20px 15px;
+  }
+  .alexio-survey.alexio-survey-theme-default .survey-question {
+    background: #064261;
+    border-bottom: 1px dashed #225772;
+    border-top-left-radius: 6px;
+  }
+
+  .alexio-survey .step label {
+    font-size: 14px;
+    display: inline-block;
+    max-width: 100%;
+    width: 100%;
+    font-weight: 700;
+  }
+
+  .alexio-survey .step-final {
+    padding: 10px;
+    margin: 0;
+    border-top-left-radius: 6px;
+    font-size: 14px;
+  }
+
+  .alexio-survey .form-footer {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .alexio-survey.alexio-survey-theme-default .form-footer {
+    background: #064261;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .alexio-survey.alexio-survey-theme-blue .form-footer {
+    background: #1a242e;
+  }
+  .alexio-survey.alexio-survey-theme-default .form-input-list-item {
+    background: #104E6E;
+    margin-bottom: 3px;
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  .alexio-survey.alexio-survey-theme-default .form-input-list-item.selected {
+    background: #03304A;
+  }
+
+  .alexio-survey .form-button {
+    color: #fff;
+    margin: 2px;
+    border-radius: 3px;
+    background-repeat: repeat-x;
+    text-shadow: none;
+    border: none;
+    width: 100%;
+    padding: 6px;
+
+  }
+  .alexio-survey.alexio-survey-theme-default .form-button {
+    background: #64B93F;
+    border: #87CE6F 2px solid;
+    text-transform: inherit;
+    font-weight: 500;
+    font-size: 14px;
+
+  }
+
+  .alexio-survey.alexio-survey-theme-blue .form-button {
+    margin: 2px;
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(top, #6ec06e 0%, #4cae4c 100%);
+    background-image: linear-gradient(to bottom, #6ec06e 0%, #4cae4c 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6ec06e', endColorstr='#ff4cae4c', GradientType=0);
+    border-color: #449d44;
+    border-bottom-color: #357935;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: none;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+
+  .alexio-survey textarea {
+    resize: none;
+  }
+
+  .alexio-survey .form-half {
+    width: 48%;
+    display: inline-block;
+  }
+
+  .alexio-survey .form-half a {
+    color: #337ab7;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+  .alexio-survey .form-half small{
+    font-size: 85%;
+  }
+
+  .alexio-survey .form-input {
+    color: #666;
+  }
+
+  .alexio-survey .form-input.form-input-text {
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+  }
+
+  .alexio-survey .form-input-list {
+    padding: 0;
+    list-style: none;
+  }
+
+  .alexio-survey .form-input-radio {
+    margin-right: 5px;
+  }
+
+  .alexio-survey .form-input-scale {
+    list-style: none;
+    padding-left: 0;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .alexio-survey .form-input-scale li:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  .alexio-survey .form-input-scale li {
+    float: left;
+  }
+
+  .alexio-survey .form-input-scale .input-scale {
+    position: absolute;
+    left: -99em;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(1) label {
+    background: #90a9b8;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(2) label {
+    background: #9fb5c2;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(3) label {
+    background: #afc1cc;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(4) label {
+    background: #becdd6;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(5) label {
+    background: #ced9e0;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(6) label {
+    background: #dde5ea;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(7) label {
+    background: #edf1f4;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(8) label {
+    background: #fdfdfd;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(9) label {
+    background: #ffffff;
+  }
+
+  .alexio-survey .form-input-scale li:nth-child(10) label {
+    background: #ffffff;
+  }
+
+  .alexio-survey .form-input-scale li label {
+    text-align: center;
+    border-radius: 20px;
+    color: #25394C;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .alexio-survey .input-scale-helper {
+    color: #809dae;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .alexio-survey .input-scale-helper .pull-right{
+    float: right;
+  }
+
+  .alexio-survey .form-input-scale li input[type="radio"]:checked + label {
+    background-color: #25394C;
+    color: #fff;
+    border: 1px white solid;
+  }
+
+  .alexio-survey .alexio-link{
+    font-size: 14px;
+  }
+  .alexio-survey.alexio-survey-theme-default .alexio-link,
+  .alexio-survey.alexio-survey-theme-default .alexio-link a{
+    color: #7190A2;
+  }
+
+  .alexio-survey .form-input-emotion {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .alexio-survey .form-input-wrap {
+    padding: 20px 10px;
+    margin: 0;
+  }
+  .alexio-survey.alexio-survey-theme-default .form-input-wrap,
+  .alexio-survey.alexio-survey-theme-default .step-final{
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #043350),
+      color-stop(1, #064160)
+    );
+    background-image: -o-linear-gradient(top, #043350 0%, #064160 100%);
+    background-image: -moz-linear-gradient(top, #043350 0%, #064160 100%);
+    background-image: -webkit-linear-gradient(top, #043350 0%, #064160 100%);
+    background-image: -ms-linear-gradient(top, #043350 0%, #064160 100%);
+    background-image: linear-gradient(to top, #043350 0%, #064160 100%);
+  }
+  .alexio-survey .form-input-emotion .input-emotion {
+    position: absolute;
+    left: -99em;
+  }
+  .alexio-survey .form-input-emotion li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .alexio-survey .form-input-emotion li input[type="radio"]:checked + label {
+    background-color: rgb(224, 255, 11);
+  }
+
+  .alexio-survey .form-input-emotion li label {
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+  }
+
+  .alexio-survey img.emoji {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    vertical-align: -0.1em;
+  }
+</style>
+<script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
+
+<form class="alexio-survey alexio-survey-theme-default">
+  <div class="alexio-survey-handle"></div>
+  <div class="form-questions">
+      {{#each questions}}
+        {{#if_eq inputType.type "textField"}}
+        <div class="step step-{{@index}}" data-if="{{nested.if}}" data-to="{{nested.to}}">
+          <h5 class="survey-question"><label for="survey-{{../surveyId}}-{{../domainId}}-{{@index}}">{{name}}</label></h5>
+          <!--<input name="{{input_name}}" id="survey-{{../surveyId}}-{{../domainId}}-{{@index}}" class="form-input form-input-text" type="text">-->
+          <div class="form-input-wrap">
+            <textarea name="{{input_name}}" id="survey-{{../surveyId}}-{{../domainId}}-{{@index}}" class="hide-mobile form-input form-input-text" rows="4"></textarea>
+          </div>
+        </div>
+        {{/if_eq}}
+
+        {{#if_eq inputType.type "radioButtons"}}
+        <div class="step step-{{@index}}" data-if="{{nested.if}}" data-to="{{nested.to}}">
+          <h5 class="survey-question"><label>{{name}}</label></h5>
+          <!-- radio buttons -->
+          <ul class="form-input-list form-input-wrap hide-mobile">
+            {{#each radioOptions}}
+            <li class="form-input-list-item">
+              <label for="survey-{{../surveyId}}-{{../domainId}}-{{@../index}}-{{@index}}">
+                <input type="radio" class="form-input-radio" name="{{../name}}" value="{{name}}" id="survey-{{../surveyId}}-{{../domainId}}-{{@../index}}-{{@index}}">
+              <span>
+                <strong>{{render_letter_option @index}}. </strong> {{name}}
+              </span>
+              </label>
+            </li>
+            {{/each}}
+          </ul>
+
+        </div>
+        {{/if_eq}}
+
+        {{#if_eq inputType.type "scale"}}
+        <div class="step step-{{@index}}" data-if="{{nested.if}}" data-to="{{nested.to}}">
+          <h5 class="survey-question"><label>{{name}}</label></h5>
+          <div class="form-input-wrap">
+            <ul class="form-input-scale hide-mobile">
+              {{#each ../scaleOptions}}
+              <li>
+                <input id="survey-{{../../surveyId}}-{{../../domainId}}-{{@../index}}-{{@index}}" type="radio" class="input-scale" value="{{ math @index '+' 1 }}" name="{{../name}}">
+                <label for="survey-{{../../surveyId}}-{{../../domainId}}-{{@../index}}-{{@index}}">
+                  {{ math @index '+' 1 }}
+                </label>
+              </li>
+              {{/each}}
+            </ul>
+            <p class="input-scale-helper hide-mobile" ng-if="vm.currentQuestion.inputType.type == 'scale'">
+              Not likely <span class="pull-right">Most likely</span>
+            </p>
+          </div>
+        </div>
+      {{/if_eq}}
+
+      {{#if_eq inputType.type "emotion"}}
+      <div class="step step-{{@index}}" data-if="{{nested.if}}" data-to="{{nested.to}}">
+        <h5 class="survey-question"><label>{{name}}</label></h5>
+        <ul class="form-input-emotion form-input-wrap hide-mobile">
+          {{#each ../emotionOptions}}
+          <li>
+            <input id="survey-{{../../surveyId}}-{{../../domainId}}-{{@../index}}-{{@index}}" type="radio" class="input-emotion" value="{{ this }}" name="{{../name}}">
+            <label class="{{this}}" for="survey-{{../../surveyId}}-{{../../domainId}}-{{@../index}}-{{@index}}">
+              {{#if_eq this "happy"}}
+              <img class="emoji" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABQxJREFUeNrsWz122zAMlvR6AN+g7tYtzgnqjJ2qTB1tnyDOCRyfIM4JpIyd4kwdLZ/A6tYtyg18hBLvQX0IQoogKVv+Cd7js6pGJPHhAwhSUBR9yHlLvO8Bf//9NVA/PfxnfV1hA6m+f/1ZnQQAStm++hmq9g2VHTg8XqhWqrZWgCyPBgClNFg0Ve3GUeEm2aoGIDwqMIqDBAAVn6LiPYsyZU131V6RIbUMLUPBM3MFRH4QAAgUL5HOz3CtJr51dB347RuAuA11jzhQeZhcppkgKAkWemgjoOE4I9XGhlhxLQG2VQDUpO7R8jujp4EZMw0QoPzEhw2xJ+WfNL46V23hawkPIDLdHNT4dzsDAJVfseheIvplBzkFMOGexZ5czWXSOgCo/Ib5e46BaBt1JJhYZcwoYhDiAMuD4otDSGcNbikCIRGOwZWfHIryIMBA1a6QkbWMFTB3wQzQRPvJrqJ8S2zYMGNdNWWPiaWzlCmfH7LytcIk0wR5QhdxAwAfymi0d4muXboDsBRzgwhXiMyHATOyvEBn18eyx8cleU5upZhNygDARGPKEowqOiLBIF0wg4oZQP+4OqSI7yi3dJepY8Eng/XHLMV1XZMzsmIEJUmY6MzQDZ2SLnAF9XxO9JkxVmgZMGbWd436T3ggkuJ1aIKzwr7GJhpbZM5YMLABMAqw/oBlY+8GdJSU5fnTpiXNwIKKWX1kBAAnS3N91+3lUHhPKheaez6APjJQjQyg/7n08N+e8J5U2jpTpIbsU1ZyAOjZ3Do6EUFDFjpWJg10LTzG2grvSaXNM4a1zrUS5v//J+15wLEU3vOZdD2vwrOvQudaicFXS0+qVUzhZUgGiWd8dC4PLbFpoEuEKANC0t4JWg4AbSODvMK0fBuSkUIcUCyPmjJByoDXwIDTWuqM/d211F1ZGxrSYnCnJDov2TodiJyDBAOAm6fOxDU1tu4GhYPWGxNQPsfA15W8IAjg39eWVafXxADqH58tg1ZkzzDs0Ppvii0ES+6ABNeCA0DXSRutS5Zbd+UG4szV5ComBgwFS9PScIawT7kh188OG6vyHQA89RXs4+mAN6HByIP+w+j9azopW0rTKlA47OOX0duj5+merX9PlRds3elO948JgLXhAZMb0Nx8Fnj642L9O0bpucD/tfEiadi5pTZa47t4GnmzXbsCOSStZSGI/vSgp6LunjCFSqaQJLhNWKBZ7QoEVH7FlmPJueXItD3XZYKPhihrYgHQ6XbXIBDl37ytsvk+KbjS6acFIGdr/FgAwoI9B5PdmF5HeSgPAXbDMjlpVQp1l4I/kxgONXJDB00gTDh4yITMN1ECAFVbsYgvLohC1oybgmXcQJsX+qC0+AgZkxmY9WybOKk0HWmW4gppXwrnsiJ9FFhEYQcAH6aFEYD6pfR4y1C3w/ONih28XCBrTM8s0BBbB7ehzNEWSsQWS7wQv4P6gMuAXaOvFKh4ERAw4WxS+3o/tnTE3+/lPkUSpNJzKASjLq91rjTVFHQBY76YmONTIxRUHYbxpW/w7yoS1hMLlTdSXwwAdswLjw6yUApWHBb1rcY6pTpBPj+Ru8ahg0TnUClqAeE8aoUZCOdZLW5ZHf7vzk76ewHN+r6PL0YgH/lh2J4vo4BirGP4Zig19FtFXX8z5AgEZUdJrisWVG1b6Fbd7OO7wT0kKGl0Tl+OChOXHjk06aOidWyojq0u+ajlnwADADd+g4E7DQ6xAAAAAElFTkSuQmCC" alt="happy">
+              {{/if_eq}}
+
+              {{#if_eq this "sad"}}
+              <img class="emoji" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABVFJREFUeNrsW9Fx2kAQlRj/h/9kxnIFwRUEVwBUYKkBAxUAFQBuQFABUAGkA7kCyzPJv9JBdj2rzLKcpLuThIXJzdyIYcTd7bu3e7t7S8u58ta6dgBuzjXR7+fnLjw60NvQv9NTthj6G/QIP399eorqXpdbo8AePPrQe9C7lsMk0A/Qd9C3AEjSeABAcB8eQ9rtqtsK+hqAODQOABB8RIJ7Ga/ERO0X2lkVvZEpXwi8PNYgALMqgHArEBxpPs8QHIVcE31jS7vRI1VSjb+FPrYZuzQAsDg0YiEtTuotUnVZZmEZYEwUzEiIDYuzAQCLQYpuFLsyg76ow1hpAIFsCEzndi0W4BPl20Ingyp3XFP1QrEOVLmByTpcC+FD8fXYln4VgKBSQ2TAg64P4ZYQPiG0D84HN1jblNTCGATXgG4bW5TPBILcoIjWmJSKBcjghU0WHhusB0+egH2F696XCoaYjrWbLHweCCDDvAwDJsKlHTRVeAHCin01oqPTDAD60Yif8U0weJptLFzt0IYB3KpGIPz0UmJ8MnxcFTw6KfQAIIvaFYheVCNVnbGvhmTTtBjAd391QdSXbUGG2yFDPioEgHTfE/79RTZShSX76lG+o0qJ8Ze0wthfyyUC5uclMr4Nh0ZxQtGYMN7UgAVDYgDagj7ItFUCQDrCJ11qTuIJtVElMEwDpaIxp7osALm2TK5HihyVKsANX3zBui8b38h+ngr0RHyt2+ICW2ETJsdV2R88EYAFSerRop1LN/cmhwE/dScg/a7UT6hhTK4GXVLLExXwhN5+psY39MeJDRD+clxnWuuDWqzaaM6AdkmdbbpPcCgCoCOSCZ+60c1Vpiv855PKfcKCq78d/g/AtQNwc87JKMBJo81b4Xek5/QBnKC6fBBu6BMJQKxyFCoS2qcgxMt5NfVDJvCb1HNbAxjbCgFoi4RJJgDtCgTHMeYFYXJew6ClD+PgusZlgaD0/tHuSwCiDKrYCK+6t+NHEc71xuZs05y3TEX4cbWBMd8vPwGIpAL6/5PVFSi9sskfbMJhWCju+igjstvqCABjdCiJ4SvGGcAYkQUD+LrwBnusOgWijNBYV/hQCJ8Qfe+gr3R3DwWEjlndOxGW4+bsCSAblToJjCQAu4zQWHfnfQHmPQhifXOMITH0gXOc4m4TCJ6h26uMdFs5rmJHGI4inR+JcR5M84A5QKxwPOc4w7sxGGLI8wI80m2JiCkWlBsaWHu+84MSxioLBASV3090YO6pBf13RZ4gf6GvukwQzWf0SuoQXjBhYbJBdMnD17fNBYAuF2NGtVHBHCuy8O85+Kpon9PSuZARA433J1n0PzkGGWpT9kP8wX3R/QCpglPX7kvvUgdoql3k6nkn5XBzfsx9AkRu4FxQI9V9Zc4YXvEFJtHgWNgC37msJgs7xkbhMF0f8WNxrnssNmD3R8Lyz7KSvEX5gECcvaHGqfDRwneF3m/zyvhyASCDcVJ41FQQWAUrjx2CUhkhUoVZ00Eg4fdC7wely+QIhKlzXHjUKBCojnEvwm+tgi7tnCAdIRKE17wKrDMJPyXac+ED3VDeplhaFe/XXiWeEeGFImo1rmO0LZf3ndPSs/fUFa++qNHBSf+dIivFA9M6Rrek0QkV6TOk3ppiinMInsYjYxsGuhXpoKqUJQ2t12WqS8nA9Rx1crU069wK9XHiZGeA0+jthZ6JBIV2OP1fIT5/5GSl0uqv0nbHrcEwTcgNreOIxB1fV2lw3RoNVUrdfgVCI2t2dRjY2v45qvDPsafXYZ6T/Te79D+FqC5R06vTL75d/e3wXwEGAIucUH6A3S9HAAAAAElFTkSuQmCC" alt="sad">
+              {{/if_eq}}
+
+              {{#if_eq this "neutral"}}
+              <img class="emoji" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABIBJREFUeNrsW811ozAQFn4pgBLIaY9LTns0qSBOBTEVxFRgqACnAjsVxKnA+LinsMc9LR2st4OVskN2MpaExI8DOPMez7EDQvPNN6OZQTD2Kectzqlv+PN77PMPF/0kvufoe/7lW3wYBQBcWY9/BPyYgqK+4aUHAGXPj4wDkg0GAK60sO6MH/cWCpsAsuXHY9tgOC1bWyg9JxRXWRd/L893DUAT1z5wIDa9AAAsvgDlXcWEnwWVTf0b4oQPrjPTjBs1ZYTTUHkxuZQfHvlXIejKjw2fYNECyOI+dwAGFeEaYd3A6TSYVAqWp4onbdFT4WZLcDPqVrd12ODUpPyO+OoB/DI+4VKawgqDJbQF36lx4ydC+RzQL9iJhc9nAYzAMUK4Xdg6AKD8rsnNOmQDNYrxvBwL2v8iyodd+XpLbrni84uqrp1YDN5L5YXACnBN8osFn/u8MQAQbPy+Kl8BwhpcpJ4LwPr7ZEurHrgDdlcRnK9UecKkYqA1+inru/KECaWUuYO1C6QIxddEYyg1PgdBuEFC4oFvDACcjANIdMoavSUQYhIPUtl5F4rrl4T6G3tfXJYlcckgniInueUYZaE1RUmXGMfUGBGsYEICbtiApssTRb6Ni46khvILCJ4BHGK8F/57YDnUDoxRjiPG3QEwJizIoAot5d7EBe5JeyqrYbVU8e+1xThzRW/AlxRhOsEGnIGBtQBg33+o4X66ddezGEd37tQiFmQkFsyUAMC6/xb5+5jwoJhiI4/o7zsdA6ak0VAj+iYZJB9M0bwwFZ3rPVtOC9/Xx25AAcBBat/AQrcSKwkahpZAyhIvXuklGzujvJbquUzPC43/butqL5Y7HsQu2f8GaWE7aRhnxcfZoriUATB1JEP6fT2qBcQaidZMPuH4ko1ISF0jcptr6gI46hZsfFLImK4CYD827aE+KMW16QeMWs4NgJzEvLMD4HDuDHDPHQCf1AifQXCiWCenY1OUtMQOVQB4IzS2J1sNJtQnypOhKzwmmcoAuJCskz6qmLYWFIuZpv3coSSGT6VxpftDtQpgFtyMyP89UulmKgBwDTAbEf2xLjl+lO9I0PqNEoawx20xGwa8IAaIZxwrXSKEFb4bgfIB0zR6ZADgTnBQFg0DFhyYt3Qny0RSNxckGC4Hbv1AYVxtLZAQFswHigF+QCPdcisFAE7EsSAdWmIEeQn2/ci2IRKhnFko/zSwvB+77oq0xKoBgMfhEXGFeADKU2MVTPOA1zEYUDzQxDGgt7mBYrfYlcr6pv2AiB1vPJoPRPlQp7wRA1Au/cKGtU/QaLOkUUcIcoNr9r6puIYN030IeLWUN2aA5GYuKaHHv1e4gm6n3i0uXHLNjneLvyt0OgEAgZCy4337BRv7+wJkQjOwhCsBou03Rm4kipfV3enfGCFsWGiKprd3hkwtRF63U70zVIDiWZP5Ox3QUzVhPPECgfOH/duwUF5TVX636mZdvTc4h2bK+bw3aEBl8elZXJ4BQ/Zc6W1Xc/yId4cxxQOJWxQfkVOcrfwVYAB+N/KBjzY6YQAAAABJRU5ErkJggg==" alt="neutral  ">
+              {{/if_eq}}
+            </label>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/if_eq}}
+    {{/each}}
+
+    <div class="step-final" data-if="{{nested.if}}" data-to="{{nested.to}}">
+      <p>{{thankYouMessage}}</p>
+    </div>
+  </div>
+  <div class="form-footer">
+    <div class="form-half alexio-link">
+      <small>Powered by <a href="#">alex.io</a></small>
+    </div>
+    <div class="form-half form-buttons hide-mobile">
+      <button class="form-button next" ng-show="!vm.lastQuestion" ng-click="vm.nextQuestion()">Next</button>
+      <button class="form-button send" ng-show="vm.lastQuestion" ng-click="vm.sendQuestion()">Send</button>
+    </div>
+    <div class="form-half form-buttons show-mobile">
+      <button class="form-button reply">Reply</button>
+    </div>
+  </div>
+</form>

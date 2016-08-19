@@ -1,0 +1,154 @@
+{
+  "name": "Survey",
+  "plural": "Surveys",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "default": "off"
+    },
+    "pageTargeting": {
+      "type": [
+        "object"
+      ],
+      "postgresql": {
+        "dataType": "text"
+      }
+    },
+    "filters": {
+      "type": [
+        "object"
+      ],
+      "postgresql": {
+        "dataType": "text"
+      }
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "questions": {
+      "type": [
+        "object"
+      ],
+      "postgresql": {
+        "dataType": "text"
+      }
+    },
+    "buttons": {
+      "type": [
+        "object"
+      ]
+    },
+    "thankYouMessage": {
+      "type": "string"
+    },
+    "duplicateFromId": {
+      "type": "number"
+    },
+    "created": {
+      "type": "date",
+      "defaultFn": "now"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "viewCount": {
+      "type": "number",
+      "default": 0
+    },
+    "visitCount": {
+      "type": "number",
+      "default": 0
+    },
+    "maxViews": {
+      "type": "number",
+      "default": 0
+    },
+    "maxAnswers": {
+      "type": "number",
+      "default": 0
+    },
+    "responseCount": {
+      "type": "number",
+      "default": 0
+    },
+    "minimizeCount": {
+      "type": "number",
+      "default": 0
+    },
+    "cursorTrigger": {
+      "type": "boolean",
+      "default": false
+    },
+    "inPageTime": {
+      "type": "object"
+    },
+    "numberOfPages": {
+      "type": "object"
+    },
+    "skipFilters": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "surveyResponses": {
+      "type": "hasMany",
+      "model": "SurveyResponse",
+      "foreignKey": ""
+    },
+    "domain": {
+      "type": "belongsTo",
+      "model": "Domain",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "updateViewCount"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "updateVisitCount"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "getSummaryData"
+    }
+  ],
+  "methods": {}
+}

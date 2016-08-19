@@ -1,0 +1,68 @@
+.delete-account {
+  color: @brand-danger;
+  font-size: 1em;
+  .regular;
+  text-decoration: underline;
+}
+
+.delete-account-modal{
+  .modal-dialog{
+    min-width: 440px;
+  }
+
+  .form-inline .form-group{
+    width: 100%;
+  }
+  label[for="confirm-email"]{
+    padding: 0;
+  }
+  .modal-header{
+    background-color: #1A242E;
+    .close{
+      text-shadow: none;
+      opacity: 1;
+    }
+    .modal-title{
+      .semibold;
+      i.fa-exclamation-triangle{
+        color: #E2545D;
+        margin-right: 10px;
+      }
+
+      i.fa-times{
+        color: #57646A;
+        &:hover{
+          opacity: 0.6;
+        }
+      }
+
+    }
+  }
+
+  .modal-body{
+    color: #637476;
+    padding: 30px 15px;
+    .form-inline{
+      margin-top: 25px;
+    }
+  }
+
+  .modal-dialog{
+    min-width: 400px;
+    a{
+      font-size: 13px;
+      text-decoration: underline;
+    }
+  }
+
+  .modal-footer{
+    a{
+      color: #4497CA;
+    }
+
+    .btn{
+      font-size: 13px;
+      .semibold;
+    }
+  }
+}

@@ -1,0 +1,207 @@
+.alexio-survey {
+  background: #25394C;
+  color: #fff;
+  border-top-left-radius: 3px;
+  position: relative;
+  .alexio-survey-handle {
+    position: absolute;
+    right: 0px;
+    top: -20px;
+    background: #25394C;
+    color: #fff;
+    width: 45px;
+    height: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 4px 4px 4px;
+      border-color: transparent transparent #7C8C91 transparent;
+      left: 18px;
+      top: 7px;
+      position: relative;
+    }
+  }
+
+  .form-questions {
+    padding: 10px;
+  }
+
+  .form-footer {
+    background: #1a242e;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .form-button {
+    color: #fff;
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(top, #6ec06e 0%, #4cae4c 100%);
+    background-image: linear-gradient(to bottom, #6ec06e 0%, #4cae4c 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6ec06e', endColorstr='#ff4cae4c', GradientType=0);
+    border-color: #449d44;
+    border-bottom-color: #357935;
+    text-shadow: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 100%;
+    padding: 6px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  .form-half {
+    width: 48%;
+    display: inline-block;
+  }
+
+  .form-input {
+    color: #666;
+
+    &.form-input-text {
+      width: 100%;
+      border-radius: 3px;
+      border: none;
+      padding: 5px;
+    }
+  }
+
+  .survey-question {
+    .semibold;
+  }
+  .form-input-list {
+    padding: 0;
+    list-style: none;
+  }
+  .form-input-radio {
+    margin-right: 5px;
+  }
+
+  .form-input-scale {
+
+    list-style: none;
+    padding-left: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    li {
+      float: left;
+      label {
+        text-align: center;
+        border-radius: 20px;
+        color: #25394C;
+        background-color: #fff;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+      }
+      input[type="radio"]:checked + label {
+        background-color: #25394C;
+        color: #fff;
+        border: 1px white solid;
+      }
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+    }
+    .input-scale {
+      position: absolute;
+      left: -99em;
+    }
+
+    .scale-input-loop(10);
+  }
+
+  .input-scale-helper{
+    color: #809dae;
+    font-size: 12px;
+    span{
+      color: white;
+    }
+  }
+
+  .form-input-emotion{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    .input-emotion{
+      position: absolute;
+      left: -99em;
+    }
+    li{
+      display: inline-block;
+      margin-right: 10px;
+
+      input[type="radio"]:checked + label {
+        background-color: #7FFF00;
+      }
+      label{
+        border-radius: 25px;
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+        &.sad{
+          background-image: url("../assets/images/static/sad.png");
+          background-repeat: no-repeat;
+        }
+
+        &.neutral{
+          background-image: url("../assets/images/static/neutral.png");
+          background-repeat: no-repeat;
+        }
+
+        &.happy{
+          background-image: url("../assets/images/static/happy.png");
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+}
+
+#survey-preview {
+  width: 80%;
+  max-width: 320px;
+  margin: 0 auto;
+  margin-top: 20px;
+  .responsive(@screen-md-max, {
+    width: 100%;
+  });
+}
+
+#survey-preview-select {
+  min-width: 70%;
+  .responsive(@screen-md-max, {
+    min-width: 100%;
+  });
+  .ui-select-match-text {
+    float: none !important;
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      display: inline-block;
+      padding-right: 18px;
+    }
+  }
+  .ui-select-choices-row-inner {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+}
+
+.scale-input-loop (@i) when (@i > 0) {
+  li:nth-child(@{i}) label {
+    background: lighten(#809dae, (@i * 5) );
+  }
+  .scale-input-loop(@i - 1);
+}
+

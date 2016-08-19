@@ -1,0 +1,137 @@
+$experimental: true !default; // set True for support Old Browsers
+$baseFont: "Open Sans", Arial, sans-serif;
+$baseColor: #03405f;
+
+$assets_path: "../img/";
+$sprite_path: "#{$assets_path}sprite.png";
+
+
+// custom mixins
+@mixin full-width() {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+
+// Responsive
+@mixin md-screen {
+  @media only screen and (max-width: 980px) {
+    @content;
+  }
+}
+
+@mixin sm-screen {
+  @media only screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin xs-screen {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin from-lg-screen {
+  @media only screen and (min-width: 981px) {
+    @content;
+  }
+}
+
+@mixin from-md-screen {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin from-xs-screen {
+  @media only screen and (min-width: 481px) {
+    @content;
+  }
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin cross-browser($property, $css) {
+  -webkit-#{$property} : $css;
+  -moz-#{$property} : $css;
+  -o-#{$property} : $css;
+  #{$property} : $css;
+}
+
+@mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+@mixin background-size($value) {
+  -webkit-background-size: $value;
+  background-size: $value;
+}
+
+@mixin box-sizing($type:border-box) {
+  @if $experimental {
+    -moz-box-sizing: $type;
+    -webkit-box-sizing: $type;
+  }
+  box-sizing: $type;
+}
+
+@mixin radius($radius:$global-radius) {
+  @if $radius {
+    @if $experimental {
+      -webkit-border-radius: $radius;
+    }
+    border-radius: $radius;
+  }
+}
+
+@mixin shadow($value) {
+    @if $experimental {
+      -webkit-box-shadow: $value;
+      -moz-box-shadow: $value;
+    }
+    box-shadow: $value;
+}
+
+@mixin smooth($speed) {
+  @if $experimental {
+    -webkit-transition: all $speed ease-out;
+    -moz-transition: all $speed ease-out;
+    -o-transition: all $speed ease-out;
+  }
+  transition: all $speed ease-out;
+}
+
+@mixin animation-delay($time) {
+  @if $experimental {
+    -webkit-animation-delay: $time;
+    -moz-animation-delay: $time;
+    -o-animation-delay: $time;
+  }
+  animation-delay: $time;
+}
+
+@mixin animation-duration($time) {
+  @if $experimental {
+    -webkit-animation-duration: $time;
+    -moz-animation-duration: $time;
+    -o-animation-duration: $time;
+  }
+  animation-duration: $time;
+}
+
+
+

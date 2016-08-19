@@ -1,0 +1,39 @@
+{
+  "name": "ReferralUser",
+  "plural": "ReferralUsers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "referralId": {
+      "type": "string"
+    },
+    "referral": {
+      "type": "string"
+    },
+    "tasks": {
+      "type": "object"
+    },
+    "points": {
+      "type": "number",
+      "default": 0,
+      "postgresql": {
+        "dataType": "numeric"
+      }
+    },
+    "registered": {
+      "type": "date",
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

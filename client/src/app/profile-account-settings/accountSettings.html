@@ -1,0 +1,64 @@
+<div class="panel panel-stack panel-default">
+    <div class="panel-heading">
+        <h4 class="subtitle">
+          <i class="fa fa-sign-in"></i>
+          Login Details
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-24">
+                <div class="form-group col-xs-24 col-sm-12 col-md-8">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" ng-model="vm.user.username" placeholder="username" disabled>
+                </div>
+                <div class="form-group col-xs-24 col-sm-12 col-md-8">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" value="*********" id="password" placeholder="password" disabled>
+                </div>
+            </div>
+            <!--<div class="form-group col-xs-6">-->
+                <!--<label class="invisible col-xs-24">Change Password</label>-->
+                <!--<button class="btn btn-new btn-dull"><i class="fa fa-refresh"></i> Change Password</button>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<div class="panel panel-stack panel-default">
+    <div class="panel-heading">
+      <h4 class="subtitle">
+        <i class="fa fa-list-alt"></i>
+        General Information
+      </h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-24 col-md-16">
+                <div class="form-group col-xs-24 col-sm-12">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" ng-model="vm.user.firstName" placeholder="First Name">
+                </div>
+                <div class="form-group col-xs-24 col-sm-12">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" ng-model="vm.user.lastName" placeholder="Last Name">
+                </div>
+                <div class="form-group col-xs-24 col-sm-12">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" ng-model="vm.user.email" placeholder="E-mail">
+                </div>
+                <div class="form-group col-xs-24 col-sm-12">
+                    <label for="phone">Phone</label>
+                    <input type="tel" class="form-control" id="phone" ng-model="vm.user.phone" placeholder="Phone">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-24">
+  <div class="row text-left">
+    <a href="" ng-click="vm.deleteAccount()" class="delete-account">
+       Delete my account
+    </a>
+  </div>
+</div>

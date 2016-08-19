@@ -1,0 +1,31 @@
+{
+  "name": "Invitation",
+  "plural": "Invitations",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string"
+    },
+    "processed": {
+    "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "teamId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

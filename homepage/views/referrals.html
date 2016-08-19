@@ -1,0 +1,504 @@
+<!doctype html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+  <title>alex.io: Micro Surveys for User Insights & Feedback</title>
+  <meta property="og:url"           content="http://alex.io/r/{{user.referralId}}" />
+  <meta property="og:title"         content="alex.io: Micro Surveys for User Insights & Feedback" />
+  <meta property="og:description"   content="Use micro-surveys to learn how people think about buying from you, then use what you learn to make changes your site to make even more people buy from you!" />
+  <meta property="og:image"         content="http://alex.io/home/img/alexio_social.png" />
+  <!--<meta name="description" content="Use micro-surveys to learn how people think about buying from you, then use what you learn to make changes to your site that make more people buy." />-->
+
+  <link rel="apple-touch-icon" sizes="57x57" href="home/img/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="home/img/apple-touch-icon-60x60.png">
+  <link rel="icon" type="image/png" href="home/img/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="home/img/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="home/assets/manifest.json">
+  <link rel="mask-icon" href="home/img/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="apple-mobile-web-app-title" content="alex.io">
+  <meta name="application-name" content="alex.io">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" type="text/css" href="home/css/fonts.css">
+  <link rel="stylesheet" type="text/css" href="home/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="home/css/style.css">
+  <link rel="stylesheet" type="text/css" href="home/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="home/css/libs/jquery.bxslider.css">
+
+  <script src="home/js/libs/modernizr.js"></script>
+  <link rel="stylesheet" type="text/css" href="home/css/animations.css">
+  <!--Opitmizly-->
+  <script src="https://cdn.optimizely.com/js/4059249487.js"></script>
+  <!--Uncomment below when ready for linkedin API -->
+  <!--<script type="text/javascript" src="//platform.linkedin.com/in.js"> api_key:786xb2sq31g574 authorize:true onLoad:init</script>-->
+</head>
+<body>
+<!--Google DataLayer-->
+{{#if isNewSignUp}}
+<script>dataLayer=[{'pageType': 'newEarlySignup', 'joinDate':'{{signUpDate}}', 'userType':'waitlist', 'userPlan':'waitlist', 'referralId':'{{referredId}}', 'alexioRef': '{{user.referralId}}'}];</script>
+{{else}}
+<script>dataLayer=[{'pageType': '', 'joinDate': '{{signUpDate}}', 'userType':'waitlist', 'userPlan':'waitlist', 'referralId':'', 'alexioRef': '{{user.referralId}}'}];</script>
+{{/if}}
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WVR2VT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WVR2VT');</script>
+<!-- End Google Tag Manager -->
+<div class="main-wrapper">
+<div class="main-header">
+  <div class="site-container">
+      <span class="logo-wrap">
+        <a href="/" class="logo">alex<span>.io</span></a>
+        <span class="motto">Instant Micro-Surveys & Insights</span>
+      </span>
+    <a href="#" class="topnav-toggle">
+      <i class="icon"></i>
+      <span>Menu</span>
+    </a>
+    <div class="topnav-wrap">
+      <a href="#" class="nav-toggle-mobile"></a>
+      <nav class="auth-nav">
+        <a href="/dashboard" class="login">Login <i>&#8595;</i></a>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- /.main-header -->
+<div class="referrals-wrapper">
+  <section class="referrals-wrap">
+    <div class="site-container animated fadeIn">
+      <h1 class="big-headline animated zoomIn">
+        <span>Thank you for joining our Early Access Program!</span>
+      </h1>
+      <h3 class="text heading blue animated fadeIn">
+        We are currently working hard on finalizing and testing alex.io...
+        the whole team is<br/> extremely excited (and busy!)
+      </h3>
+      <div class="note-box animated fadeIn">
+        <i class="note-icon green"></i>
+        <p class="text blue">
+          As soon as our Beta is ready, we will start inviting everyone on the list but
+          in the order that they appear on the queue.
+        </p>
+      </div>
+      <h4 class="md-headline animated fadeIn">Want to get priortity access to alex.io and free 3 months plus additional rewards?</h4>
+      <div class="get-url-wrap animated fadeIn">
+        <p class="text blue">
+          It's easy - just sign up 5 of your friends using your unique URL:
+          <span id="friends_url" class="url">alex.io/r/{{user.referralId}}</span>
+        </p>
+        <button class="button copy-to" data-target="#friends_url"><span>Copy URL</span></button>
+      </div>
+    </div>
+  </section>
+  <!-- /.referrals-wrap -->
+
+  <section class="prior-access-wrap">
+    <div class="site-container animated-box" data-enter="fadeIn">
+      <div class="people-cols-wrap">
+        <aside class="people-col animated-box" data-enter="zoomIn">
+          <i class="people-icon ahead"></i>
+          <strong class="people-number">{{positionsAhead}}</strong>
+          <span class="info">People<br/>ahead of you</span>
+        </aside>
+        <aside class="people-col animated-box" data-enter="zoomIn">
+          <i class="people-icon behind"></i>
+          <strong class="people-number">{{positionsBehind}}</strong>
+          <span class="info">People<br/>behind you</span>
+        </aside>
+      </div>
+      <!-- /.people-cols-wrap -->
+      <section class="get-access-wrap">
+        <h2 class="big-headline animated-box" data-enter="flipInYLight">
+          <span>Interested in getting priority access?</span>
+        </h2>
+        <div class="content-box animated-box" data-enter="fadeInUpLight">
+          <h6 class="text heading blue">
+            Get early access by referring your friends. The more friends that join,<br/>
+            the sooner you will get access.
+          </h6>
+          <div class="share-wrap">
+            <nav class="social-nav">
+              <a href="#" class="icon-facebook"></a>
+              <a href="#" class="icon-twitter"></a>
+              <a href="#" class="icon-mail" data-toggle="modal" data-target="#invite_modal"></a>
+              <a id="linkedin-share" href="#" class="icon-linkedin"></a>
+            </nav>
+            <div class="copy-form-wrap">
+              <span class="text blue">Or share this unique link:</span>
+              <input id="share_url" type="text" class="field" value="alex.io/r/{{user.referralId}}" readonly />
+              <button class="button green lg copy-to" data-target="#share_url"><span>Copy URL</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /.get-access-wrap -->
+    </div>
+  </section>
+  <!-- /.prior-access-wrap -->
+
+  <section class="receive-rewards-wrap">
+    <div class="site-container">
+      <h3 class="section-headline animated-box" data-enter="fadeIn">Receive Rewards for Referring New Signups:</h3>
+      <div class="rewards-outer-wrap">
+        <ul class="rewards-boxes-list">
+
+          <!-- Beginning of rewards list-->
+          <li id="first-reward" class="reward-box locked animated-box" data-enter="zoomInLight">
+            <div class="info-section">
+              <i class="icon-state"></i>
+              <div class="inner-wrap">
+                <div class="rewards-list-box">
+                  <ul class="rewards-list">
+                    <li>3 months of alex.io for Free after Beta</li>
+                    <li>"How to Use Surveys to Get a 64.8% Increase in Completed Purchases" Essay</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <span class="signups-number">5 Signups</span>
+          </li>
+          <!-- /.reward-box -->
+
+          <li id="second-reward" class="reward-box locked animated-box" data-enter="fadeIn">
+            <div class="info-section">
+              <i class="icon-state"></i>
+              <div class="inner-wrap">
+                <div class="rewards-list-box">
+                  <ul class="rewards-list">
+                    <li>6 months of alex.io for Free after Beta</li>
+                    <li>"How to Extract Conversion Boosting Insights From User Testing Videos in 15 Minutes" Essay</li>
+                    <li>Plus all previous rewards</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <span class="signups-number">10 Signups</span>
+          </li>
+          <!-- /.reward-box -->
+
+          <li id="third-reward" class="reward-box locked animated-box" data-enter="fadeIn">
+          <div class="info-section">
+            <i class="icon-state"></i>
+            <div class="inner-wrap">
+              <div class="rewards-list-box">
+                <ul class="rewards-list">
+                  <li>9 months of alex.io for Free after Beta</li>
+                  <li>"Decode Your Market Sophistication & Consistently Deliver Marketing That Sells" Essay</li>
+                  <li>Plus all previous rewards</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <span class="signups-number">15 Signups</span>
+        </li>
+          <!-- /.reward-box -->
+          <li id="fourth-reward" class="reward-box locked animated-box" data-enter="fadeIn">
+            <div class="info-section">
+              <i class="icon-state"></i>
+              <div class="inner-wrap">
+                <div class="rewards-list-box">
+                  <ul class="rewards-list">
+                    <li>Lifetime Membership to alex.io for Free</li>
+                    <li>Private Consultation with us: we'll set you up for success.</li>
+                    <li>Plus all previous rewards</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <span class="signups-number">20+ Signups</span>
+          </li>
+          <!-- /.reward-box -->
+        </ul>
+        <div class="rewards-progress-wrap">
+          <div id="friend_progress" class="rewards-progress" data-friends="{{totalReferred}}"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.receive-rewards-wrap -->
+
+  <div class="allowed-features-wrap">
+    <div class="site-container">
+      <div class="allowed-features-box">
+        <aside class="friends-col animated-box" data-enter="zoomIn">
+          <i class="friends-icon"></i>
+          <span class="info">{{totalReferred}} of Your<br/> Friends Have Joined<br/>alex.io</span>
+        </aside>
+
+        <!--Left column logic with different states-->
+        <!--state-1-->
+        <aside id="rewards-state-1" class="features-col">
+          <strong class="section-headline">Congrats! You are eligable for:</strong>
+          <ul class="features-list">
+            <li class="free-months">
+            <i class="icon-flask"></i>
+            <span class="text blue">3 months of alex.io for Free after Beta</span>
+          </li>
+          <li>
+            <i class="icon-schedule"></i>
+            <span class="text blue">
+              "How to Extract Conversion Boosting Insights From
+              User Testing Videos in 15 Minutes" Essay</span>
+          </li>
+          <li>
+            <i class="icon-plus"></i>
+            <span class="text blue">Plus all previous rewards</span>
+          </li>
+        </ul>
+      </aside>
+      <!--end of state-1-->
+
+      <!--state-2-->
+      <aside id="rewards-state-2" class="features-col">
+        <strong class="section-headline">You are not elgible for any rewards YET!</strong>
+        <strong class="section-headline">Invite friends with the method below:</strong>
+        <div class="share-wrap">
+          <div style="margin-left: 40px;" class="copy-form-wrap">
+            <input id="url_field" type="text" class="field" value="alex.io/r/{{user.referralId}}" readonly />
+            <button class="button green lg copy-to" data-target="#url_field"><span>Copy URL</span></button>
+          </div>
+          <strong class="small-headline margin20bottom"></strong>
+          <nav style="margin-left: 80px;" class="social-nav">
+            <a href="#" class="icon-facebook"></a>
+            <a href="#" class="icon-twitter"></a>
+            <a href="#" class="icon-mail" data-toggle="modal" data-target="#invite_modal"></a>
+            <a id="linkedin-share" href="#" class="icon-linkedin"></a>
+          </nav>
+        </div>
+      </aside>
+      <!--end of state-2-->
+
+      <!--share actions state-->
+      <aside id="social-actions" class="features-col">
+        <strong class="section-headline">You are not elgible for any rewards YET!</strong>
+        <strong class="section-headline">Complete the tasks below to get started:</strong>
+        <ul class="features-list">
+          <li class="animated-box" data-enter="fadeInRightLight">
+            {{#unless user.tasks.facebook}}
+            <i id="i-facebook" class="icon-plus"></i>
+            <span id="txt-facebook" class="text blue">Like alex.io on Facebook</span>
+            {{else}}
+            <i class="icon-check green"></i>
+            <span class="text blue">Awesome job facebook task complete</span>
+            {{/unless}}
+          </li>
+          <li class="animated-box" data-enter="fadeInRightLight">
+            {{#unless user.tasks.twitter}}
+            <i id="i-twitter" class="icon-plus"></i>
+            <span id="txt-twitter" class="text blue">Follow us on Twitter</span>
+            {{else}}
+            <i class="icon-check green"></i>
+            <span class="text blue">Awesome job Twitter task complete</span>
+            {{/unless}}
+          </li>
+          <li class="animated-box" data-enter="fadeInRightLight">
+            {{#unless user.tasks.angellist}}
+            <i id="i-angellist" class="icon-plus"></i>
+            <span id="txt-angellist" class="text blue">Follow Us at Angel.co</span>
+            {{else}}
+            <i class="icon-check green"></i>
+            <span class="text blue">Awesome job Angel.co task complete</span>
+            {{/unless}}
+          </li>
+          <li class="animated-box" data-enter="fadeInRightLight">
+            {{#unless user.tasks.linkedin}}
+            <i id="i-linkedin" class="icon-plus"></i>
+            <span id="txt-linkedin" class="text blue">Follow Us at Linkedin</span>
+            {{else}}
+            <i class="icon-check green"></i>
+            <span class="text blue">Awesome job Linkedin task complete</span>
+            {{/unless}}
+          </li>
+        </ul>
+      </aside>
+      <!--end of share actions state=-->
+    <!--End of left column logic-->
+    </div>
+  </div>
+</div>
+  <!-- /.allowed-features-wrap -->
+
+  <div class="referral-tasks-wrap">
+    <div class="site-container">
+      <h4 class="big-headline"><span>Don't have Friends to Invite?</span></h4>
+      <h6 class="text heading blue">
+        Don't worry. You can still earn referral credit by completing these tasks. Each task is<br/>
+        worth .33 referred user credits, so three tasks completed would equal to 1 reffered user.
+      </h6>
+      <ul class="social-task-list">
+        {{#unless user.tasks.facebook}}
+        <li id="task-facebook" class="facebook animated-box" data-enter="fadeInUp">
+          <span class="text blue">Like alex.io on Facebook</span>
+          <div class="share-box">
+            <div class="fb-like" data-href="http://facebook.com/getalexio" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false"></div>
+          </div>
+        </li>
+        {{/unless}}
+        {{#unless user.tasks.twitter}}
+        <li id="task-twitter" class="animated-box" data-enter="fadeInUp">
+          <span class="text blue">Follow us on Twitter</span>
+          <div class="share-box">
+            <a class="twitter-follow-button"
+               href="https://twitter.com/TwitterDev" data-show-count="false" data-show-screen-name="false" data-size="large">
+              Follow</a>
+          </div>
+        </li>
+        {{/unless}}
+        {{#unless user.tasks.angellist}}
+        <li id="task-angellist" class="animated-box" data-enter="fadeInUp">
+          <span class="text blue">Follow us on Angel.co</span>
+          <div class="share-box">
+            <div class="social-nav"><a id="angelco-follow-button" class="icon-angellist" href="#"></a></div>
+          </div>
+        </li>
+        {{/unless}}
+        {{#unless user.tasks.linkedin}}
+        <li id="task-linkedin" class="animated-box" data-enter="fadeInUp">
+          <span class="text blue">Follow us on Linkedin</span>
+          <div class="share-box">
+            <div class="social-nav"><a class="icon-linkedin" href="#"></a></div>
+          </div>
+        </li>
+        {{/unless}}
+      </ul>
+    </div>
+  </div>
+  <!-- /.referral-tasks-wrap -->
+</div>
+<!-- /.referrals-wrapper -->
+
+<section class="grey-info-wrap waiting-list">
+  <div class="site-container animated-box" data-enter="fadeIn">
+    <div class="headline-col">
+      <img src="home/img/waiting_icon.png" alt="Micro Surveys" />
+      <h3 class="section-headline">Why is there a<br>waiting list you ask?</h3>
+    </div>
+    <div class="text-col">
+      <p class="text">We are a privately funded startup with a vision to make insights easy to collect and easy
+        to take actional next steps. This means that we cannot afford expensive advertising (like our highly
+        price competitor)...</p>
+      <p class="text">so to make this happen we need your help to spread the word.</p>
+      </div>
+  </div>
+</section>
+<!-- /.grey-info-wrap -->
+
+<footer class="main-footer darker">
+  <div class="site-container animated-box" data-enter="fadeInUp">
+    <span class="copy"><a href="/">alex.io</a> All rights reserved, 2016</span>
+    <nav class="bottom-nav">
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
+    </nav>
+    <a href="#" class="norton-link" data-toggle="modal" data-target="#mcafee_modal">
+      <img src="home/img/footer_mcafee.png" alt="McAfee" />
+    </a>
+  </div>
+</footer>
+</div>
+
+<a href="#" class="scroll-top"></a>
+
+<div id="copy_note" class="site-note success">
+  The URL is<br/>Copied to Clipboard
+</div>
+
+<div id="invite_modal" class="popup-wrapper">
+  <div class="popup-box invite white">
+    <a href="#" class="close-popup"></a>
+    <h5 class="modal-headline a-center">Invite Friends to Join alex.io</h5>
+    <form class="invite-form-wrap">
+      <div class="box">
+        <input type="text" class="field email" placeholder="Type in your Friend's Email" />
+        <div class="contact-import-box">
+          <!--<span class="text import">Or Import Contacts</span>-->
+          <!--<a href="#" class="import-yahoo"><img src="home/img/yahoo_mail.png" alt="Yahoo" /></a>-->
+          <!--<a href="#" class="import-google"><img src="home/img/gmail_icon.png" alt="Gmail" /></a>-->
+        </div>
+      </div>
+      <div class="box">
+        <textarea class="field textarea" placeholder="Your message">Just Joined alex.io Beta waitlist, super excited to use the product. Sign up too at alex.io/r/{{user.referralId}}
+        </textarea>
+      </div>
+      <div class="box third">
+        <button id="invite-friends" class="button lg green">Invite Friends</button>
+        <div class="copy-referral-box">
+          <span class="text referral">Referral Code</span>
+           <a href="#" class="copy-to" data-target="#modal_url">Copy Referral Code</a>
+          <input id="modal_url" type="text" class="field url" value="http://alex.io/{{user.referralId}}" readonly />
+        </div>
+        </div>
+    </form>
+  </div>
+</div>
+<!-- /.popup-wrapper -->
+
+<div id="mcafee_modal" class="popup-wrapper">
+  <div class="popup-box white norton">
+    <a href="#" class="close-popup"></a>
+    <h5 class="modal-headline">Safe and Secure</h5>
+    <p class="text">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, impedit dolores
+      molestias veritatis non, alias dolor fugiat possimus laborum cupiditate sunt,
+      asperiores ut ratione eos deleniti voluptatum reiciendis obcaecati aut?
+    </p>
+    <div class="image-box margin20top">
+      <img src="home/img/mcafee_secure_logo.png" alt="McAfee" width="210" class="norton-img" />
+    </div>
+  </div>
+</div>
+<!-- /.popup-wrapper -->
+
+<!--Face book api-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Twitter code-->
+<script>
+  window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = [];
+    t.ready = function (f) {
+      t._e.push(f);
+    };
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+<!-- /Twitter code-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="home/js/libs/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="home/js/libs/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="home/js/animate.js"></script>
+<script type="text/javascript" src="home/js/main.js"></script>
+<script type="text/javascript" src="home/js/referralJQ.js"></script>
+<script type="text/javascript" src="home/js/social-api.js"></script>
+<!--<script src="https://angel.co/javascripts/embed.js" type="text/javascript"></script>-->
+<script src="https://apis.google.com/js/client.js"></script>
+<script> window.referralId = "{{user.referralId}}"; </script>
+<script> window.totalReferred = {{totalReferred}}; </script>
+<script> window.taskCount = {{totalReferredPct}}; </script>
+<script> window.allTaskComplete = {{allTaskComplete}}; </script>
+<script> window.isNewSignUp = {{isNewSignUp}}; </script>
+<!--<script src="../home/js/bootstrap-tokenfield.min.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,74 @@
+<div id="login-container" class="container-fluid">
+  <div class="modal-dialog login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-sm-24 login__form__title">
+          <span class="semibold">Login</span> to <span class="logo-text">alex<span>.io</span></span>
+        </div>
+        <!--<div class="col-xs-12 login__cta__title">-->
+          <!--Don't have an account?-->
+        <!--</div>-->
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="row-height">
+            <div class="col-sm-24 login__form">
+              <div class="inside">
+                <form method="POST" novalidate="novalidate" ng-submit="vm.auth()">
+                  <div class="form-group">
+                    <label for="username" class="control-label">Username</label>
+                    <input type="text" class="form-control input-lg" id="username" name="username"
+                           ng-model="vm.username"
+                           title="Please enter you username">
+                    <span class="help-block"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="control-label">Password</label>
+                    <input type="password" class="form-control input-lg" id="password" name="password"
+                           ng-model="vm.password"
+                           title="Please enter your password">
+                    <span class="help-block"></span>
+                  </div>
+                  <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+                  <div class="form-group remember-me">
+                    <label for="remember-me">
+                      <span class="checkbox">
+                        <i class="fa fa-check" ng-show="vm.rememberMe"></i>
+                      </span>
+                      <input type="checkbox" id="remember-me" ng-model="vm.rememberMe">
+                      Remember me
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-lg btn-success col-xs-18 col-xs-offset-3">Login</button>
+                  </div>
+                  <div class="form-group forgot-password text-center">
+                    <label class="help-block">
+                      <i class="fa fa-lightbulb-o"></i>
+                      <a ui-sref="forgotpassword">Forgot a password?</a>
+                    </label>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!--<div class="col-sm-6 col-xs-height login__cta">-->
+              <!--<div class="inside">-->
+                <!--<p>Sign up for <a href="//alex.io">alex.io</a> today and start unlocking insights to grow your business. </p>-->
+                <!--<ul class="list-unstyled" style="line-height: 2">-->
+                  <!--<li><i class="fa fa-check-circle-o"></i> Getting started is free-->
+                  <!--</li>-->
+                  <!--<li><i class="fa fa-check-circle-o"></i> Target users you want to learn from-->
+                  <!--</li>-->
+                  <!--<li><i class="fa fa-check-circle-o"></i> Setup takes less than 5 minutes-->
+                  <!--</li>-->
+                <!--</ul>-->
+                <!--<p><a href="/#" class="btn btn-lg btn-primary btn-block">Create your first question</a></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="watermark">alex.<span>io</span></p>
+  </div>
+</div>

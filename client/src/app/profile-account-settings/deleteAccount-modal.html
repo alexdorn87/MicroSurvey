@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h5 class="modal-title"><i class="fa fa-exclamation-triangle"></i> Delete Account ?
+    <button type="button" class="close" ng-click="vm.dismiss()" aria-label="Close"><span
+      aria-hidden="true"><i class="fa fa-times"></i></span></button>
+  </h5>
+</div>
+<div class="modal-body">
+  <p>Deleting your account will remove all of your information from database. This cannot be undone.</p>
+
+  <form action="" class="form-inline">
+    <div class="form-group form-inline-group">
+      <label class="col-xs-12" for="confirm-email">To confirm type your email:</label>
+      <input class="col-xs-12" type="email" id="confirm-email" ng-model="vm.confirmEmail" class="form-control">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <a href="" ng-click="vm.dismiss()">No, I want to keep my account.</a>
+  <button class="btn btn-danger" type="button" ng-click="vm.deleteAccount()">Delete my account</button>
+</div>

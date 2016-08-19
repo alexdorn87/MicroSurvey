@@ -1,0 +1,29 @@
+{
+  "name": "AccountType",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "required": true,
+      "default": "default"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "default": "Default"
+    },
+    "domainQty": {
+      "type": "number",
+      "required": true,
+      "default": 1
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

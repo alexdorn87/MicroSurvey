@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="cancel-sortBytag-modal"><i class="fa fa-close" ng-click="vm.cancel()"></i></h4>
+  <span><h3 class="modal-title">Responses by tag</h3></span>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <h4 class="col-sm-4">Tag Name</h4>
+    <div class="col-sm-20 form-group">
+      <input type="text" ng-model="selected" uib-typeahead="tag for tag in testTag | filter:$viewValue | limitTo:8" class="form-control" placeholder="Enter tag namer here...">
+    </div>
+  </div>
+    <div ng-repeat="index in vm.responses">
+      <div ng-repeat="question in index.response| filter:selected">
+        <!--<div ng-repeat="tag in question.responseTags | filter:selected">-->
+        <div class="panel panel-default panel-headless panel-responses">
+          <div class="panel-body">
+            <div class="row">
+              <div class="box panel-headless--section">
+                <h5 class="col-xs-21">
+                  <span><i class="fa fa-calendar"></i>&nbsp;{{index.createdAt | date: 'medium'}}</span>
+                </h5>
+                <div class="col-xs-24">
+                  <p>Question: <strong>{{question.name}}</strong></p>
+                  <p>Answer: <strong>{{question.value}}</strong></p>
+                  <span ng-repeat="tag in question.responseTags">
+                    <button class="btn btn-sm btn-primary--tags">
+                      <span><a class="fa fa-close" ng-click="vm.deleteTag(index, tag)"></a></span>
+                      &nbsp;{{tag}}
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal-footer">
+  <a href="" ng-click="vm.cancel()">close</a>
+</div>

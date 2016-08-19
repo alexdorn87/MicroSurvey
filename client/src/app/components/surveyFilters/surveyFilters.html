@@ -1,0 +1,235 @@
+<div class="col-xs-24 query-build">
+
+  <!--<div class="row filter">-->
+  <!--<pre>{{group.rules | json}}</pre>-->
+  <div ng-repeat="rule in group.rules | orderBy:'index' track by $index" class="col-xs-24 filter filter-group">
+    <div class="form-inline col-xs-24 condition" ng-repeat="r in rule.group.rules" ng-hide="rule.status =='added'">
+      <div class="row">
+        <div class="col-xs-1">
+          <div class="row">
+            <span class="fa-stack circle-box" ng-if="$first">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-arrow-right fa-stack-1x"></i>
+            </span>
+            <span class="fa-stack fa-success circle-box" ng-if="$last && $index != 0">
+              <span class="and-lines hidden-xs"></span>
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-arrow-right fa-stack-1x"></i>
+            </span>
+            <span class="btn-circle-box circle-box" ng-if="$middle">
+              <span class="and-lines hidden-xs"></span>
+              <span class="btn btn-circle">
+                AND
+              </span>
+            </span>
+          </div>
+        </div>
+        <ui-select ng-model="r.field" class="col-xs-21 col-sm-7" theme="bootstrap"
+                   on-select="updateOptions($item, $model, r)">
+          <ui-select-match>
+            <span ng-bind="$select.selected.name"></span>
+          </ui-select-match>
+          <ui-select-choices
+            repeat="item in (fields | filter: $select.search) track by $index">
+            <span ng-bind="item.name"></span>
+          </ui-select-choices>
+        </ui-select>
+
+        <ui-select ng-if="allow.indexOf('DEVICE') >= 0 && r.filterType == 'DEVICE'" ng-model="r.condition"
+                   class="col-offset-xs-2 col-xs-21 col-offset-sm-0 col-sm-9">
+          <ui-select-match placeholder="Select Device Type">
+            <span ng-bind="$select.selected.name"></span>
+          </ui-select-match>
+          <ui-select-choices
+            repeat="item.name as item in deviceConditions | filter: $select.search track by $index">
+            <span ng-bind="item.name"></span>
+          </ui-select-choices>
+        </ui-select>
+
+        <ui-select ng-if="allow.indexOf('SOURCE') >= 0 && r.filterType == 'SOURCE'" ng-model="r.condition"
+                   class="col-offset-xs-2 col-xs-21 col-offset-sm-0 col-sm-9">
+          <ui-select-match placeholder="Select Source Type">
+            <span ng-bind="$select.selected.name"></span>
+          </ui-select-match>
+          <ui-select-choices
+            repeat="item.name as item in sourceConditions | filter: $select.search track by $index">
+            <span ng-bind="item.name"></span>
+          </ui-select-choices>
+        </ui-select>
+
+        <div class="col-xs-21 col-offset-xs-2 col-sm-9 col-offset-sm-0" ng-if="(allow.indexOf('IP') >= 0 && r.filterType == 'IP') ||
+                                     (allow.indexOf('CONTAINS') >= 0 && r.filterType == 'CONTAINS') ||
+                                     (allow.indexOf('NOCONTAINS') >= 0 && r.filterType == 'NOCONTAINS') ||
+                                     (allow.indexOf('SIMPLE') >= 0 && r.filterType == 'SIMPLE') ||
+                                     (allow.indexOf('EXACT') >= 0 && r.filterType == 'EXACT') ||
+                                     (allow.indexOf('STARTS') >= 0 && r.filterType == 'STARTS') ||
+                                     (allow.indexOf('ENDS') >= 0 && r.filterType == 'ENDS') ||
+                                     (allow.indexOf('LANG') >= 0 && r.filterType == 'LANG') ||
+                                     (allow.indexOf('VIS') >= 0 && r.filterType == 'VIS') ||
+                                     (allow.indexOf('COOKIE') >= 0 && r.filterType == 'COOKIE') ||
+                                     (allow.indexOf('LOCCON') >= 0 && r.filterType == 'LOCCON')
+                                     ">
+          <input
+            ng-pattern="/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/"
+            placeholder="Lower IP" ng-if="allow.indexOf('IP') >= 0 && r.filterType == 'IP'"
+            ng-model="r.condition.lower" class="ip-input form-control col-xs-12 " type="text">
+          <input
+            ng-pattern="/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/"
+            placeholder="Upper IP" ng-if="allow.indexOf('IP') >= 0 && r.filterType == 'IP'"
+            ng-model="r.condition.upper" class="ip-input form-control col-xs-12" type="text">
+
+          <ui-select ng-if="allow.indexOf('LANG') >= 0 && r.filterType == 'LANG'" ng-model="r.condition"
+                     class="col-xs-24 full-width-select">
+            <ui-select-match placeholder="Language">
+              <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices
+              repeat="item.code as item in languages | filter: $select.search track by $index">
+              <span ng-bind="item.name"></span>
+            </ui-select-choices>
+          </ui-select>
+
+          <ui-select ng-if="allow.indexOf('VIS') >= 0 && r.filterType == 'VIS'" ng-model="r.condition"
+                     class="col-xs-24 full-width-select">
+            <ui-select-match placeholder="Visitor Type">
+              <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices
+              repeat="item.name as item in visitorTypes | filter: $select.search track by $index">
+              <span ng-bind="item.name"></span>
+            </ui-select-choices>
+          </ui-select>
+
+          <ui-select ng-if="allow.indexOf('LOCCON') >= 0 && r.filterType == 'LOCCON'" ng-model="r.condition"
+                     class="col-xs-24 full-width-select">
+            <ui-select-match placeholder="Location...">
+              <span ng-bind="$select.selected.cname"></span>
+            </ui-select-match>
+            <ui-select-choices
+              repeat="item.ccode as item in countryNames | filter: $select.search track by $index">
+              <span ng-bind="item.cname"></span>
+            </ui-select-choices>
+          </ui-select>
+
+          <input ng-if="allow.indexOf('CONTAINS') >= 0 && r.filterType == 'CONTAINS'" ng-model="r.condition"
+                 class="form-control" type="text">
+          <input ng-if="allow.indexOf('NOCONTAINS') >= 0 && r.filterType == 'NOCONTAINS'" ng-model="r.condition"
+                 class="form-control" type="text">
+          <input ng-if="allow.indexOf('SIMPLE') >= 0 && r.filterType == 'SIMPLE'" ng-model="r.condition"
+                 class="form-control" type="text">
+          <input ng-if="allow.indexOf('EXACT') >= 0 && r.filterType == 'EXACT'" ng-model="r.condition"
+                 class="form-control" type="text">
+          <input ng-if="allow.indexOf('STARTS') >= 0 && r.filterType == 'STARTS'" ng-model="r.condition"
+                 class="form-control" type="text">
+          <input ng-if="allow.indexOf('ENDS') >= 0 && r.filterType == 'ENDS'" ng-model="r.condition"
+                 class="form-control" type="text">
+
+          <input ng-if="allow.indexOf('COOKIE') >= 0 && r.filterType == 'COOKIE'" ng-model="r.condition.cookieName"
+                 placeholder="Cookie Name" class="form-control" type="text">
+          <input ng-if="allow.indexOf('COOKIE') >= 0 && r.filterType == 'COOKIE'" ng-model="r.condition.cookieValue"
+                 placeholder="Cookie Value" class="form-control" type="text">
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-4 col-xs-21 text-right" ng-if="r.status === 'added'">
+          <i class="fa fa-trash" ng-click="removeCondition(rule.group, $index)"></i>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-4 col-xs-21 text-right" ng-if="$parent.$last && r.status == 'adding'">
+          <button class="btn btn-gray btn-and visible-xs-inline-block" ng-click="addCondition(rule.group, r)">
+            <i class="fa fa-plus"></i> And
+          </button>
+          <button class="btn btn-success" ng-click="addGroup(group, rule, r)">
+            Add <i class="fa fa-caret-right"></i>
+          </button>
+        </div>
+        <div class="col-sm-offset-2 col-sm-4 col-xs-12" ng-if="r.status === 'added'">
+          <!--<div class="col-xs-1">-->
+          <!--<i class="fa fa-edit" ng-click="vm.editFilter(f)"></i>-->
+          <!--</div>-->
+          <!--<div class="col-xs-1">-->
+          <!--<i class="fa fa-trash" ng-click="vm.removeFilter($index)"></i>-->
+          <!--</div>-->
+        </div>
+        <div class="col-sm-offset-2 col-sm-4 col-xs-21 text-right" ng-if="$last && rule.status === 'edit'">
+          <button class="btn btn-primary" ng-click="updateGroup(rule)">
+            Update
+          </button>
+        </div>
+      </div>
+      <!-- if editting -->
+      <div class="row">
+        <div ng-if="r.status == 'adding' || r.status == 'edit'"
+             class="col-sm-offset-1 col-sm-7 col-xs-24 edit-block">
+          <div class="alert alert-info" role="alert">
+            <i class="fa fa-info-circle"></i> <span class="name">{{r.filterType}}</span>: Target all pages
+            which contain the entered text
+          </div>
+        </div>
+        <div ng-if="r.status == 'adding' || r.status == 'edit'" class="col-xs-20 col-sm-16 edit-block">
+          <div class="add-to hidden-xs">
+          </div>
+          <button class="btn btn-gray btn-and hidden-xs" ng-click="addCondition(rule.group, r)">
+            <i class="fa fa-plus"></i> And
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-24" ng-show="rule.status =='added'">
+      <!--<div class="col-xs-24">-->
+      <div class="row">
+        <div class="col-xs-1">
+          <div class="row">
+            <span class="fa-stack">
+               <i class="fa fa-circle fa-stack-2x"></i>
+               <i class="fa fa-arrow-right fa-stack-1x"></i>
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-21 col-sm-16">
+          <ul class="conditions-as-list">
+            <li class="added-condition" ng-if="!!rule.group.rules[0].condition">
+              <span
+                ng-if="['SIMPLE', 'EXACT', 'STARTS', 'ENDS', 'CONTAINS', 'NOCONTAINS'].indexOf(rule.group.rules[0].filterType) >= 0">URL</span>
+              {{rule.group.rules[0].field.name}} <span
+              ng-if="['CONTAINS', 'NOCONTAINS', 'SIMPLE', 'EXACT', 'ENDS', 'STARTS', 'IP', 'COOKIE'].indexOf(rule.group.rules[0].filterType) < 0">{{rule.group.rules[0].condition}}</span><span
+              ng-if="rule.group.rules[0].filterType == 'IP'">{{ rule.group.rules[0].condition.lower }} : {{ rule.group.rules[0].condition.upper }}</span><span
+              ng-if="rule.group.rules[0].filterType == 'COOKIE'">{{ rule.group.rules[0].condition.cookieName }} : {{ rule.group.rules[0].condition.cookieValue }}</span><span
+              ng-if="['SIMPLE', 'EXACT', 'STARTS', 'ENDS', 'CONTAINS', 'NOCONTAINS'].indexOf(rule.group.rules[0].filterType) >= 0">'{{rule.group.rules[0].condition}}'</span>
+            </li>
+            <li class="and-holder" ng-if="rule.group.rules.length > 1">
+              <span class="btn-circle-box">
+              <span class="btn btn-circle">
+                AND
+              </span>
+            </span>
+            </li>
+            <li ng-if="rule.group.rules.length > 1">
+              <ul>
+                <li ng-repeat="r in rule.group.rules" ng-if="$index > 0" class="added-condition">
+                  <span
+                    ng-if="['SIMPLE', 'EXACT', 'STARTS', 'ENDS', 'CONTAINS', 'NOCONTAINS'].indexOf(r.filterType) >= 0">URL</span>
+                  {{r.field.name}} <span
+                  ng-if="['CONTAINS', 'NOCONTAINS', 'SIMPLE', 'EXACT', 'ENDS', 'STARTS', 'IP', 'COOKIE'].indexOf(r.filterType) < 0">{{r.condition}}</span><span
+                  ng-if="r.filterType == 'IP'">{{ r.condition.lower }} : {{ r.condition.upper }}</span><span
+                  ng-if="r.filterType == 'COOKIE'">{{ r.condition.cookieName }} : {{ r.condition.cookieValue }}</span><span
+                  ng-if="['SIMPLE', 'EXACT', 'STARTS', 'ENDS', 'CONTAINS', 'NOCONTAINS'].indexOf(r.filterType) >= 0">'{{r.condition}}'</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-sm-offset-3 col-sm-4 col-xs-offset-3 col-xs-10">
+          <div class="col-xs-3 col-sm-1">
+            <i class="fa fa-edit" ng-click="editGroup(rule)"></i>
+          </div>
+          <div class="col-xs-3 col-sm-1">
+            <i class="fa fa-trash" ng-click="removeGroup(group, $index)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->
+
+</div>

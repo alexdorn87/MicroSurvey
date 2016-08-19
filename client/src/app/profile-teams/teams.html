@@ -1,0 +1,78 @@
+<div class="col-sm-12 col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="subtitle">
+        <i class="fa fa-users"></i>
+        Create a Team
+      </h4>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-24">
+          <form name="teamForm" class="form-inline">
+            <div class="form-group">
+              <label for="team-name">Name:</label>
+              <input type="text"
+                     name="teamName"
+                     class="form-control"
+                     id="team-name"
+                     minlength="3"
+                     ng-model="vm.newTeam.name">
+            </div>
+            <div ng-messages="teamForm.teamName.$error" role="alert" class="text-danger">
+              <div ng-message="minlength">Please enter at least 3 characters.</div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-success pull-right"
+                      ng-class="{'disabled': teamForm.teamName.$viewValue.length <= 3}"
+                      ng-enabled="teamForm.teamName.$viewValue.length > 3"
+                      ng-click="vm.createTeam()">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 col-md-18">
+  <div class="panel panel-stack panel-default">
+    <div class="panel-heading">
+      <h4 class="subtitle">
+        <i class="fa fa-users"></i>
+        Created Teams
+      </h4>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-18">
+          <ul>
+            <li ng-repeat="team in vm.teamsIOwn">
+              {{team.name}}
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-stack panel-default">
+    <div class="panel-heading">
+      <h4 class="subtitle">
+        <i class="fa fa-users"></i>
+        My Teams
+      </h4>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-18">
+          <ul>
+            <li ng-repeat="team in vm.teamsIBelong">
+              {{team.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-xs-24 col-md-7">
+    <div class="panel sidebar panel-headless panel-summary">
+      <div class="panel-body">
+        <div class=" row">
+          <div class="col-xs-24 panel-headless--section">
+            <h5 class="regular"><i class="icon-dark-bg fa fa-briefcase"></i> GENERAL INFORMATION</h5>
+          </div>
+          <div class="col-xs-24 panel-headless--section main-options">
+            <h5 class="regular">Website</h5>
+            <h4 class="regular highlight-color">{{::vm.domainUrl}}</h4>
+            <table class="table table-responsive table-borderless">
+              <thead>
+                <tr>
+                  <th class="data-title"><i class="icon-dark-bg fa fa-calendar"></i> Start Date</th>
+                  <th class="data-title"><i class="icon-dark-bg fa fa-calendar"></i> End Date</th>
+                  <th class="data-title"><i class="icon-dark-bg fa fa-file-text-o"></i> Questions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="highlight-color">{{::$parent.currentSurvey.startDate | date:'MM/dd/yy'}}</td>
+                  <td class="highlight-color">{{::$parent.currentSurvey.endDate  | date:'MM/dd/yy'}}</td>
+                  <td class="highlight-color">{{::$parent.currentSurvey.questions.length}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-24 col-md-17">
+    <div class="panel panel-headless">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-24 panel-headless--section">
+            <div class="chart chart-rate chart-donut">
+              <h4 class="rate-title">Display</h4>
+              <h3 class="rate-value">{{vm.donuts.display.count}}</h3>
+              <div class="chart-wrapper">
+                <div class="col-xs-8 no-padding">
+                  <h6 class="rate-text">Rate</h6>
+                  <h5 class="rate-pct">{{vm.donuts.display.percent | number:1}}%</h5>
+                </div>
+                <div class="col-xs-16 no-padding canvas-wrapper">
+                  <donut-graph label="'Display'" percent="vm.donuts.display.percent" color="'#51A9E8'"></donut-graph>
+                </div>
+              </div>
+            </div>
+            <div class="chart chart-rate chart-donut">
+              <h4 class="rate-title">Engagement</h4>
+              <h3 class="rate-value">{{vm.donuts.engagement.count}}</h3>
+              <div class="chart-wrapper">
+                <div class="col-xs-8 no-padding">
+                  <h6 class="rate-text">Rate</h6>
+                  <h5 class="rate-pct">{{vm.donuts.engagement.percent | number:1}}%</h5>
+                </div>
+                <div class="col-xs-16 no-padding canvas-wrapper">
+                  <donut-graph label="'Engagement'" percent="vm.donuts.engagement.percent" color="'#5AD785'"></donut-graph>
+                </div>
+              </div>
+            </div>
+            <div class="chart chart-rate chart-donut">
+              <h4 class="rate-title">Minimize</h4>
+              <h3 class="rate-value">{{vm.donuts.minimize.count}}</h3>
+              <div class="chart-wrapper">
+                <div class="col-xs-8 no-padding">
+                  <h6 class="rate-text">Rate</h6>
+                  <h5 class="rate-pct">{{vm.donuts.minimize.percent | number:1}}%</h5>
+                </div>
+                <div class="col-xs-16 no-padding canvas-wrapper">
+                  <donut-graph label="'Minimize'" percent="vm.donuts.minimize.percent" color="'#20A1BE'"></donut-graph>
+                </div>
+              </div>
+            </div>
+            <div class="chart chart-rate chart-donut">
+              <h4 class="rate-title">Responses</h4>
+              <h3 class="rate-value">{{vm.donuts.responses.count}}</h3>
+              <div class="chart-wrapper">
+                <div class="col-xs-8 no-padding">
+                  <h6 class="rate-text">Rate</h6>
+                  <h5 class="rate-pct">{{vm.donuts.responses.percent | number:1}}%</h5>
+                </div>
+                <div class="col-xs-16 no-padding canvas-wrapper">
+                  <donut-graph label="'Responses'" percent="vm.donuts.responses.percent" color="'#965CB9'"></donut-graph>
+                </div>
+              </div>
+            </div>
+            <div class="chart chart-rate chart-donut">
+              <h4 class="rate-title">Time to response</h4>
+              <h3 class="rate-value">{{vm.donuts.timeToResponse.average}}
+                <small>min</small>
+              </h3>
+              <!--<div class="chart-wrapper">-->
+                <!--<div class="col-xs-8 no-padding">-->
+                  <!--<h6 class="rate-text">Rate</h6>-->
+                  <!--<h5 class="rate-pct">50%</h5>-->
+                <!--</div>-->
+                <!--<div class="col-xs-16 no-padding canvas-wrapper">-->
+                  <!--<donut-graph label="'Time to response'" percent="50" color="'#E077C6'"></donut-graph>-->
+                <!--</div>-->
+              <!--</div>-->
+            </div>
+          </div>
+          <div class="col-xs-24 panel-headless--section">
+            <div class="chart chart-summary chart-big">
+              <big-graph data="vm.summary"></big-graph>
+              <div id="chartjs-tooltip"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

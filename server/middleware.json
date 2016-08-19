@@ -1,0 +1,122 @@
+{
+  "initial:before": {
+    "loopback#favicon": {}
+  },
+  "initial": {
+    "compression": {},
+    "cors": {
+      "params": {
+        "origin": true,
+        "credentials": true,
+        "maxAge": 86400
+      }
+    }
+  },
+  "session": {
+    "express-session": {
+      "params": {
+        "secret": "!alexio#$pass4n0w!",
+        "saveUninitialized": true,
+        "resave": true
+      }
+    }
+  },
+  "auth": {},
+  "parse": {
+    "body-parser#json": {},
+    "body-parser#urlencoded": {
+      "params": {
+        "extended": true
+      }
+    }
+  },
+  "routes": {
+    "loopback#rest": {
+      "paths": [
+        "${restApiRoot}"
+      ]
+    }
+  },
+  "files": {
+    "loopback#static": [
+      {
+        "paths": [
+          "/tracker-test"
+        ],
+        "params": "$!../tracker-client"
+      },
+      {
+        "paths": [
+          "/lib/tracker/client.min.js"
+        ],
+        "params": "$!../tracker-client/lib/client.min.js"
+      },
+      {
+        "paths": [
+          "/lib/tracker/static"
+        ],
+        "params": "$!../client/dist/assets/images/static"
+      },
+      {
+        "paths": [
+          "/home/assets"
+        ],
+        "params": "$!../homepage/assets"
+      },
+      {
+        "paths": [
+          "/home/js"
+        ],
+        "params": "$!../homepage/js"
+      },
+      {
+        "paths": [
+          "/home/css"
+        ],
+        "params": "$!../homepage/css"
+      },
+      {
+        "paths": [
+          "/home/img"
+        ],
+        "params": "$!../homepage/img"
+      },
+      {
+        "paths": [
+          "/assets/images"
+        ],
+        "params": "$!../client/dist/assets/images"
+      },
+      {
+        "paths": [
+          "/fonts"
+        ],
+        "params": "$!../client⁄dist/fonts"
+      },
+      {
+        "paths": [
+          "/assets/fonts/proxima_nova"
+        ],
+        "params": "$!../client/dist/assets/fonts/proxima_nova"
+      },
+      {
+        "paths": [
+          "/dashboard"
+        ],
+        "params": "$!../client/dist"
+      },
+      {
+        "paths": [
+          "/"
+        ],
+        "params" : "$!../misc"
+      }
+    ]
+  },
+  "final": {
+    "loopback#urlNotFound": {}
+  },
+  "final:after": {
+    "loopback#errorHandler": {}
+  }
+}

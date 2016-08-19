@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-sm-15">
+    <div class="panel panel-headless">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-24 panel-headless--section">
+            <h4 class="subtitle">
+              <i class="fa fa-globe"></i> Webpage
+            </h4>
+
+            <p>Address URL</p>
+            <strong>{{vm.domain.url}}</strong>
+          </div>
+          <div class="col-xs-24 panel-headless--section">
+            <h4 class="subtitle">
+              <i class="fa fa-sliders"></i> Filters
+            </h4>
+
+            <div ng-repeat="filter in vm.survey.filters">
+              <p>{{filter.type.name}}</p>
+              <strong>{{filter.value}}</strong>
+            </div>
+          </div>
+          <div class="col-xs-24 panel-headless--section">
+            <h4 class="subtitle">
+              <i class="fa fa-desktop"></i> Display
+            </h4>
+
+            <p>Start Date</p>
+
+            <strong>{{vm.survey.created | date : 'dd/MM/yy'}}</strong>
+
+            <p>End Date</p>
+
+            <strong>{{vm.survey.endDate | date : 'dd/MM/yy'}}</strong>
+          </div>
+          <div class="col-xs-24 panel-headless--section">
+            <h4 class="subtitle">
+              <i class="fa fa-thumbs-o-up"></i> Thank You Message
+            </h4>
+
+            <p>{{vm.survey.thankYouMessage}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-9 questions-preview">
+    <div class="panel panel-headless">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-24">
+            <h3 class="subtitle">Questions Preview</h3>
+          </div>
+          <div class="col-xs-24 panel-headless--section" ng-repeat="question in vm.survey.questions">
+            <div class="col-xs-4 question-number">
+              {{$index + 1}}
+            </div>
+            <div class="col-xs-20">
+              <p>{{question.name}}</p>
+              <div class="form-group" ng-if="question.inputType.type == 'textField'">
+                <label>Answer</label>
+                <textarea class="form-control" rows="5" disabled></textarea>
+              </div>
+              <div ng-if="question.inputType.type == 'radioButtons'">
+                <div ng-repeat="option in question.radioOptions">
+                  <label> <input type="radio" disabled> {{option.name}}</label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!--<div class="col-xs-24 panel-headless&#45;&#45;section">-->
+            <!--<h2>UUID</h2>-->
+
+            <!--<code>{{vm.uuid}}</code>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

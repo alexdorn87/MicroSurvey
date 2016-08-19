@@ -1,0 +1,51 @@
+<form id="survey-preview" class="alexio-survey">
+  <div class="alexio-survey-handle"></div>
+  <div class="form-questions">
+    <div class="step">
+      <h5 class="survey-question">{{vm.currentQuestion.name}}</h5>
+
+      <!-- text field -->
+      <textarea class="form-input form-input-text" ng-if="vm.currentQuestion.inputType.type == 'textField'" rows="4"></textarea>
+
+      <!-- radio buttons -->
+      <ul class="form-input-list" ng-if="vm.currentQuestion.inputType.type == 'radioButtons'">
+        <li class="form-input-list-item" ng-repeat="option in vm.currentQuestion.radioOptions">
+          <label>
+            <input type="radio" ng-model="vm.currentAnswers" class="form-input-radio" ng-value="{{vm.optionLetters[$index]}}" name="">
+            <span>
+              <strong>{{vm.optionLetters[$index]}}.</strong> {{option.name}}
+            </span>
+          </label>
+        </li>
+      </ul>
+
+      <!-- scale -->
+      <ul class="form-input-scale" ng-if="vm.currentQuestion.inputType.type == 'scale'">
+        <li ng-repeat="s in [1,2,3,4,5,6,7,8,9,10]">
+          <input ng-model="vm.currentAnswers" id="{{vm.currentQuestion.name + '-scale-' + s}}" type="radio" class="input-scale" ng-value="{{s}}" name="{{vm.currentQuestion.name}}">
+          <label for="{{vm.currentQuestion.name + '-scale-' + s}}">
+            {{s}}
+          </label>
+        </li>
+      </ul>
+      <p class="input-scale-helper" ng-if="vm.currentQuestion.inputType.type == 'scale'">
+        Not likely <span class="pull-right">Most likely</span>
+      </p>
+
+      <!-- emotion -->
+      <ul class="form-input-emotion" ng-if="vm.currentQuestion.inputType.type == 'emotion'">
+        <li ng-repeat="e in ['sad','neutral','happy']">
+          <input ng-model="vm.currentAnswers" id="{{vm.currentQuestion.name + '-emotion-' + e}}" type="radio" class="input-emotion" ng-value="'{{e}}'" name="{{vm.currentQuestion.name}}">
+          <label ng-class="e" for="{{vm.currentQuestion.name + '-emotion-' + e}}"></label>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-footer">
+    <div class="form-half"><small>Powered by <a href="#">alex.io</a></small></div>
+    <div class="form-half">
+      <button class="form-button" ng-show="!vm.lastQuestion" ng-click="vm.nextQuestion()">Next</button>
+      <button class="form-button" ng-show="vm.lastQuestion" ng-click="vm.sendQuestion()">Send</button>
+    </div>
+  </div>
+</form>

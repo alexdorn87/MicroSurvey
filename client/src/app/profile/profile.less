@@ -1,0 +1,114 @@
+.view-profile {
+  padding-bottom: 20px;
+  .fa-cogs {
+    color: #63797a;
+  }
+  .subtitle {
+    display: inline-block;
+  }
+
+  .panel {
+    & > .panel-heading {
+      background: #fff;
+    }
+    & > .panel-body {
+      background: #f2f5f6;
+    }
+
+    input {
+      background: #fafbfb;
+      &.form-control[disabled], &.form-control[readonly] {
+        background-color: #eeeeee;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.view-profile {
+  .secondary-menu__item:last-child {
+    border-right: 1px solid #DEE2E3;
+  }
+}
+.sub-header{
+  padding: 10px 0;
+  background: #f8f8f8;
+  min-height: 60px;
+}
+.menu-block{
+  .secondary-menu{
+    margin-bottom: 0;
+    border-bottom: none;
+    padding: 0;
+  }
+  .action-menu .form-group{
+    margin-bottom: 0;
+  }
+}
+
+.secondary-menu-lower {
+  min-height: 40px;
+  border-top: none;
+  .secondary-menu__item {
+    margin-right: 20px;
+    margin-left: 20px;
+    border-right: none;
+    border-left: none;
+    font-size: 1.2em;
+    &:last-child {
+      border-right: none;
+      border-left: none;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  .nav.navbar-nav {
+    li {
+      a {
+        background: #f6f8f9;
+        padding: 7px 0 4px;
+        .bold;
+        &:focus{
+          background: none;
+        }
+      }
+      &.active {
+        & > a {
+          color: #3996d7;
+          border-bottom: 3px solid #3996d7;
+          padding-bottom: 7px;
+          .responsive(@screen-xs-max, {
+            margin-bottom: 4px;
+          });
+        }
+
+      }
+    }
+  }
+}
+
+.panel-stack {
+  &:first-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  & > .panel-heading {
+    border-radius: 0px;
+  }
+  &:first-child {
+    & > .panel-heading {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+  }
+  & > .panel-body {
+    border-radius: 0px;
+  }
+  &:last-child {
+    & > .panel-body {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+}

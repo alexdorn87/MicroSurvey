@@ -1,0 +1,68 @@
+{
+  "name": "AuthUser",
+  "plural": "AuthUsers",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "superUser": {
+      "type": "boolean"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string",
+      "required": false
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "notifications": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "accountType": {
+      "type": "belongsTo",
+      "model": "AccountType",
+      "foreignKey": ""
+    },
+    "teams": {
+      "type": "hasAndBelongsToMany",
+      "model": "Team",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "createUserWithDomain"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "getAllRelatedInfo"
+    }
+  ],
+  "methods": {}
+}

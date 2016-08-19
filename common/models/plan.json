@@ -1,0 +1,27 @@
+{
+  "name": "Plan",
+  "plural": "Plans",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "totalResponses": {
+      "type": "number",
+      "required": true
+    },
+    "totalDomains": {
+      "type": "number",
+      "required": true
+    },
+    "totalUsers": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

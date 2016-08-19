@@ -1,0 +1,28 @@
+<div class="panel panel-default panel-sites">
+  <div class="panel-heading">
+    <h4 class="subtitle">
+      <i class="fa fa-desktop"></i>
+      Current Websites
+    </h4>
+    <button class="btn btn-new btn-primary pull-right margin5top" ui-sref="home.profile.sites.domain">
+      <i class="fa fa-plus"></i>
+      <span class="hidden-xs">Add New Website</span>
+    </button>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6 sites-selector">
+        <div class="row">
+          <ul>
+            <li ng-repeat="domain in vm.domains track by $index" ui-sref="home.profile.sites.detail({id: domain.id})" ui-sref-active="active">
+              <span class="url">{{domain.name}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-18 sites-view" ui-view>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lib test</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <h1>Tracker Client Test</h1>
+
+    <form class="form jumbotron" role="form">
+      <div class="form-group">
+        <label for="uuid">Enter UUID:</label>
+        <input type="text" class="form-control" id="uuid" name="uuid" value="557c7280-b98b-11e5-8011-39b81a72b8db">
+      </div>
+      <button type="submit" class="btn btn-lg btn-primary">Connect client</button>
+    </form>
+  </div>
+</div>
+<!--<script src="/lib/tracker/client.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript" src="/lib/tracker/client.min.js"></script>
+<script type="text/javascript">
+ window.alexioClient =  new Tracker({uuid: 'ae513bb0-081a-11e6-833f-aba84edbc145'});
+</script>
+</body>
+</html>

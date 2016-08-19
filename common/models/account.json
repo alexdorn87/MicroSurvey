@@ -1,0 +1,37 @@
+{
+  "name": "Account",
+  "plural": "Accounts",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "isActive": {
+      "type": "boolean"
+    },
+    "organizationName": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "AuthUser",
+      "foreignKey": ""
+    },
+    "plans": {
+      "type": "hasOne",
+      "model": "Plan",
+      "foreignKey": ""
+    },
+    "teams": {
+      "type": "hasMany",
+      "model": "Team",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,40 @@
+<div class="box">
+      <div ng-repeat="index in vm.responses">
+          <div ng-repeat="question in index.response | filter:{name: vm.questionName, isReviewed: '!true'}">
+            <div class="panel">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="panel-headless--section">
+                    <div class="col-xs-24 col-sm-14 col-lg-20">
+                      <h5>
+                        <span><i class="fa fa-calendar"></i>&nbsp;{{index.createdAt | date: 'medium'}}</span>
+                      </h5>
+                      <div class="box">
+                        <p>Question: <strong>{{question.name}}</strong></p>
+                        <p>Answer: <strong>{{question.value}}</strong></p>
+
+                        <button class="btn btn-md btn-primary--tags" ng-click="tagFocus = true">Add Tag</button>
+                        <label class="tag" ng-show="tagFocus">
+                          <input type="text" focus-if="tagFocus" ng-blur="tagFocus = false" ng-model="vm.newTag" ng-keypress="($event.which === 13)?vm.addTag(index, $event):return" placeholder="Enter Tag Name..."/>
+                        </label>
+                      <span ng-repeat="tag in question.responseTags">
+                        <label class="tag">
+                          <span><a class="fa fa-close" ng-click="vm.deleteTag(index, tag)"></a></span>
+                          &nbsp;{{tag}}
+                        </label>
+                      </span>
+                      </div>
+                    </div>
+                    <span class="col-xs-24 col-sm-10 col-lg-4 text-right">
+                      <button class="btn btn-sm btn-primary btn-check-reviewed" ng-click="vm.reviewedClick(index)">
+                        <i class="fa fa-check"></i> Mark response as reviewed
+                      </button>
+                    </span>
+                    <!--<p>URL: {{response.referrer}}</p>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

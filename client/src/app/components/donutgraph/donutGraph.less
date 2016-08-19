@@ -1,0 +1,59 @@
+.chart{
+  &.chart-donut{
+    width: 20%;
+    float: left;
+    .responsive(@screen-xs-max, {
+      width: 50%;
+    });
+    h4{
+      color: #677877;
+      .regular;
+    }
+    h3, .rate-pct{
+      color: #1B2531;
+      .semibold;
+      margin: 0;
+    }
+    .rate-title{
+      font-size: 16px;
+    }
+    .rate-value{
+      font-size:28px;
+      letter-spacing: 1.2px;
+      small{
+        font-size: 50%;
+        .regular;
+      }
+    }
+    .rate-pct{
+      letter-spacing: 0.5px;
+    }
+
+    .rate-text{
+      text-transform: uppercase;
+      color: #9AA8A9;
+      .regular;
+      margin-bottom: 5px;
+    }
+  }
+
+  .chart-wrapper{
+    overflow: hidden;
+    min-height: 90px;
+    position: relative;
+    canvas{
+      position: absolute;
+      left: 12px;
+      .responsive(@screen-sm-max, {
+        left: 20px;
+      });
+    }
+    .canvas-wrapper{
+      position: absolute;
+
+    }
+    > *{
+      height: 90px;
+    }
+  }
+}

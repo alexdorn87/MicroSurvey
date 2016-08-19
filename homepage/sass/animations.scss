@@ -1,0 +1,226 @@
+@import "config/_custom_settings";
+@import "config/_grid";
+@import "libs/animate";
+
+
+@media screen and (max-width: 767px) {
+  .animated {
+    -webkit-animation-name: none;
+    animation-name: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  html.cssanimations {
+  /*=== Animation Boxes ===*/
+  .animated-box {
+    visibility: hidden;
+    @include animation-duration(2s);
+    &.animated {
+      visibility: visible;
+    }
+  }
+
+  /*=== Home Intro Wrapper ===*/
+  .home-intro-wrap {
+    @include animation-delay(0.5s);
+    .big-headline {
+      @include animation-delay(1s);
+      @include animation-duration(0.9s);
+    }
+    .small-headline {
+      @include animation-delay(1.5s);
+    }
+    .request-access-wrap {
+      @include animation-delay(2s);
+    }
+    .intro-features-wrap {
+      @include animation-delay(2.2s);
+      .col {
+        @include animation-delay(2.4s);
+      }
+    }
+  }
+  /*=== Grey Info Wrapper ===*/
+  .grey-info-wrap {
+    .animated-box {
+      @include animation-duration(0.9s);
+    }
+    &.first {
+      @include animation-delay(3s);
+    }
+  }
+
+  /*=== GEt Insights Wrapper ===*/
+  .get-insights-wrap {
+    .text-col {
+      .arrow-box {
+        visibility: visible;
+      }
+    }
+  }
+
+  /*=== Tagreting Wrapper ===*/
+  .targeting-wrap {
+    .animated-box {
+      @include animation-duration(0.9s);
+    }
+  }
+
+  /*=== How TO Wrapper ===*/
+  .how-to-wrap {
+    .section-headline {
+      @include animation-duration(1.5s);
+    }
+    .how-to-list {
+      li {
+        @include animation-duration(1.2s);
+        &:nth-child(2) {@include animation-delay(0.6s);}
+        &:nth-child(3) {@include animation-delay(1.2s);}
+      }
+    }
+  }
+  /*=== Question Formats Wrapper ===*/
+  .question-formats-wrap {
+    .animated-box {
+      @include animation-duration(0.9s);
+    }
+    .infobox-with-image {
+    //  overflow: hidden;
+    }
+  }
+
+  /*=== Main Footer ===*/
+  .main-footer {
+    .animated-box {
+      @include animation-duration(0.6s);
+      @include animation-delay(0.5s);
+    }
+  }
+
+  /*=== Popup Wrapper ===*/
+  .popup-wrapper {
+    @include animation-delay(0.9s);
+    .popup-box {
+      @include animation-duration(0.5s);
+      -webkit-animation-name: fadeOutDownLight;
+      animation-name: fadeOutDownLight;
+    }
+    &.in {
+      @include animation-delay(0s);
+      .popup-box {
+        visibility: visible;
+        -webkit-animation-name: fadeInUpLight;
+        animation-name: fadeInUpLight;
+      }
+    }
+  }
+
+  /*=== Referrals Wrapper ===*/
+  .referrals-wrap {
+    .site-container {
+      @include animation-delay(0.3s);
+      @include animation-duration(0.8s);
+    }
+    .big-headline {
+      @include animation-delay(1.3s);
+      @include animation-duration(0.7s);
+    }
+    .text.heading {
+      @include animation-delay(2s);
+      @include animation-duration(0.8s);
+    }
+    .md-headline,
+    .note-box,
+    .get-url-wrap {
+      @include animation-delay(2.6s);
+      @include animation-duration(0.8s);
+    }
+  }
+  /*=== Priority Access ===*/
+  .prior-access-wrap {
+    .site-container {
+      @include animation-duration(0.2s);
+    }
+    .people-col {
+      @include animation-duration(0.6s);
+      &:nth-child(1) {
+        @include animation-delay(0.3s);
+      }
+      &:nth-child(2) {
+        @include animation-delay(0.9s);
+      }
+    }
+    .big-headline {
+      @include animation-duration(0.5s);
+      @include animation-delay(1s);
+    }
+    .content-box {
+      @include full-width;
+      @include animation-delay(1s);
+      @include animation-duration(0.7s);
+    }
+    @media screen and (min-height: 900px) {
+      .content-box {
+        @include animation-delay(1.9s);
+      }
+    }
+  }
+
+    /*=== Receive Rewards ===*/
+    .receive-rewards-wrap {
+      .section-headline {
+        @include animation-duration(0.6s);
+        @include animation-delay(0.2s);
+      }
+      .rewards-boxes-list {
+        .reward-box {
+          @include animation-duration(0.6s);
+          &:nth-child(2) {@include animation-delay(0.6s);}
+          &:nth-child(3) {@include animation-delay(1.2s);}
+          &:nth-child(4) {@include animation-delay(1.8s);}
+          &:nth-child(5) {@include animation-delay(2.4s);}
+        }
+      }
+    }
+
+    /*=== Allowed Features Wrapper ===*/
+    .allowed-features-wrap {
+      .allowed-features-box {
+        .friends-col {
+          @include animation-duration(0.8s);
+        }
+        .features-col {
+          .features-list {
+            li {
+              @include animation-duration(0.8s);
+              &:nth-child(2) {@include animation-delay(0.2s);}
+              &:nth-child(3) {@include animation-delay(0.4s);}
+              &:nth-child(4) {@include animation-delay(0.6s);}
+              &:nth-child(5) {@include animation-delay(0.6s);}
+            }
+          }
+        }
+      }
+    }
+    /*=== Referral Tasks Wrapper ===*/
+    .referral-tasks-wrap {
+      .social-task-list {
+        li {
+          @include animation-duration(0.8s);
+          &:nth-child(2) {@include animation-delay(0.2s);}
+          &:nth-child(3) {@include animation-delay(0.4s);}
+          &:nth-child(4) {@include animation-delay(0.6s);}
+          &:nth-child(5) {@include animation-delay(0.8s);}
+          iframe {
+            visibility: hidden !important;
+          }
+          &.animated {
+            iframe {
+              visibility: visible !important;
+            }
+          }
+        }
+      }
+    }
+}
+}

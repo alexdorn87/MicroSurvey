@@ -1,0 +1,41 @@
+<div class="my__surveys panel panel-default">
+  <div class="my__surveys__header panel-heading">
+    <div class="row">
+      <div class="my__surveys__header__title col-xs-24 col-sm-3 col-lg-2">Created</div>
+      <div class="my__surveys__header__title col-xs-24 col-sm-3 col-lg-2">End Date</div>
+      <div class="my__surveys__header__title col-xs-24 col-sm-8 col-lg-10">Title</div>
+      <div class="my__surveys__header__title col-xs-24 col-sm-3 text-center"><a href="" ng-click="vm.toggleOrderBy(vm.filters)">Responses  <i class="fa" ng-class="{'fa-caret-down': vm.filters.sortOption == 'desc', 'fa-caret-up': vm.filters.sortOption == 'asc'}" ng-if="!!vm.filters.sortOption"></i></a></div>
+      <div class="my__surveys__header__title col-xs-24 col-sm-4">Status</div>
+      <div class="my__surveys__header__title col-xs-24 col-sm-3">&nbsp;</div>
+    </div>
+  </div>
+  <div class="my__surveys__body panel-body">
+    <div class="my__surveys__body__row row"
+         ng-repeat="survey in vm.surveys | sortResponses:vm.filters.sortOption | inDateFilter:vm.filters.created.date | showByResponseQty:vm.filters.responses.selected.id | filter:vm.filters.search track by $index">
+      <span class="my__surveys__body__field my__surveys__body__field--strong col-xs-24 col-sm-3 col-lg-2" data-label="Created">{{ survey.created | date : 'dd/MM/yy' }}</span>
+      <span class="my__surveys__body__field my__surveys__body__field--strong col-xs-24 col-sm-3 col-lg-2" data-label="End Date">{{ survey.endDate | date : 'dd/MM/yy' }}</span>
+      <span class="my__surveys__body__field col-xs-24 col-sm-8 col-lg-10" data-label="Title"><a href="#" ui-sref="home.surveyDetail.details({ id: survey.id, domainId: survey.domainId })">{{survey.name}}</a></span>
+      <span class="my__surveys__body__field my__surveys__body__field--strong col-xs-24 col-sm-3 text-center" data-label="Responses">{{ survey.responseCount }}</span>
+      <span class="my__surveys__body__field col-xs-24 col-sm-4" data-label="Status">
+        <!--For displaying draft status -->
+        <!--<div class="status" ng-if="survey.status == 'draft'">
+          <i class="fa fa-floppy-o"> draft </i>
+        </div>-->
+        <!--Regualr status toggle-->
+        <div class="survey__toggle">
+          <div class="switch" ng-class="vm.getOnOrOff(survey)">
+            <input id="toggle_{{survey.id}}" class="toggle" type="checkbox" ng-checked="{{vm.getToggleState(survey)}}">
+            <label for="toggle_{{survey.id}}" class="" ng-click="vm.toggleSurvey(survey)">
+            </label>
+            <div class="status">
+              {{vm.getisActive(survey)}}
+            </div>
+          </div>
+        </div>
+      </span>
+      <span class="my__surveys__body__field my__surveys__body__field--action col-xs-3 col-sm-1"><i class="fa fa-edit" ui-sref="home.surveyEdit({id: survey.id, domainId: survey.domainId})" uib-tooltip="Edit Survey"></i></span>
+      <span class="my__surveys__body__field my__surveys__body__field--action col-xs-3 col-sm-1"><i class="fa fa-copy" ng-click="vm.copy(survey)" uib-tooltip="Copy Survey"></i></span>
+      <span class="my__surveys__body__field my__surveys__body__field--action col-xs-3 col-sm-1"><i class="fa fa-trash" ng-click="vm.remove(survey)" uib-tooltip="Delete Survey"></i></span>
+    </div>
+  </div>
+</div>

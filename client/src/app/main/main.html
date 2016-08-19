@@ -1,0 +1,219 @@
+<div class="container-fluid">
+  <nav-menu></nav-menu>
+  <div class="row" id="main-container" ui-view>
+    <!-- body -->
+    <div id="content" class="col-md-19">
+      <div class="row top-actions">
+        <div class="col-sm-16">
+          <h4 class="semibold">Dashboard</h4>
+        </div>
+        <div class="col-sm-6">
+          <!--<ui-select ng-model="selectedItem" theme="bootstrap">-->
+            <!--<ui-select-match>-->
+              <!--<span ng-bind="$select.selected"></span>-->
+            <!--</ui-select-match>-->
+            <!--<ui-select-choices repeat="item in [1,2,3,4]">-->
+              <!--<span ng-bind="item"></span>-->
+              <!--<span ng-bind="item"></span>-->
+            <!--</ui-select-choices>-->
+          <!--</ui-select>-->
+        </div>
+        <div class="col-sm-2">
+          <!--<a href="#">-->
+            <!--<i class="fa fa-th"></i>-->
+          <!--</a>-->
+          <!--<a href="#">-->
+            <!--<i class="fa fa-th-list"></i>-->
+          <!--</a>-->
+        </div>
+      </div>
+      <div class="row survey-boxes-wrap">
+        <div class="col-sm-12 col-lg-8 survey__box get-started-survey" ng-if="!main.showCreateNewSurvey">
+          <div class="survey__cta">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" ng-click="main.hideCreateNewSurvey()" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+                <img src="../../assets/images/new-survey.png" class="img-responsive" alt="">
+              </div>
+              <div class="modal-body">
+                <h3>Create New Survey!</h3>
+
+                <p>
+                  Continuous learning leads to continuous improvement. Setup your next question and keep the flow of insights coming.
+                </p>
+                <button class="btn btn-success btn-new btn-lg" ui-sref="home.surveyCreate">
+                  Create new Survey
+                </button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div>
+        <div class="col-sm-12 col-lg-8 next-steps" ng-if="!main.showNextStepsBox">
+          <div class="inner-wrap">
+            <button type="button" class="close" ng-click="main.hideNextStepsBox()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3>Next Steps:</h3>
+            <ol>
+              <li>Open the survey question and set the targeting.</li>
+              <li>Start the question and collect responses.</li>
+              <li>Tag the responses you received to quantify insights.</li>
+            </ol>
+            <div class="arrow-box"></div>
+          </div>
+        </div>
+        <div class="col-xs-24 col-sm-12 col-lg-8 survey__box"
+             ng-repeat="survey in main.surveys | limitTo:main.pagination.size:main.pagination.start track by survey.id"
+             ng-class="main.getOnOrOff(survey)">
+          <div class="survey__preview">
+            <div class="modal-content">
+              <div class="modal-header" ui-sref="home.surveyDetail.details({ id: survey.id, domainId: survey.domainId })">
+                <a href="#">{{survey.name}}</a>
+              </div>
+              <div class="modal-body">
+                <!--<div class="responses-stats" ng-class="main.getOnOrOff(survey)">-->
+                    <!--<p class="responses-stats&#45;&#45;digits">{{survey.responseCount}} </p>-->
+                    <!--<p class="responses-stats&#45;&#45;label">Responses</p>-->
+                <!--</div>-->
+                <div class="col-xs-12 chart-box">
+                  <div class="chart">
+                    <div class="responses-stats" ng-class="main.getOnOrOff(survey)">
+                      <p class="responses-stats--digits">{{survey.viewCount}} </p>
+                      <p class="responses-stats--label">Views</p>
+                    </div>
+                    <!--<nvd3 options="main.options" data="main.data"></nvd3>-->
+                    <mini-graph ng-if="survey.miniGraph.loaded" data="survey.miniGraph.views"></mini-graph>
+                  </div>
+                </div>
+                <div class="col-xs-12 chart-box">
+                  <div class="chart">
+                    <div class="responses-stats" ng-class="main.getOnOrOff(survey)">
+                      <p class="responses-stats--digits">{{survey.responseCount}} </p>
+                      <p class="responses-stats--label">Responses</p>
+                    </div>
+                    <!--<nvd3 options="main.options" data="main.data"></nvd3>-->
+                    <mini-graph ng-if="survey.miniGraph.loaded" data="survey.miniGraph.responses"></mini-graph>
+                  </div>
+                </div>
+                <!--<div class="col-xs-12 chart-box">-->
+                  <!--<div class="chart">-->
+
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-xs-12 chart-box">-->
+                  <!--<div class="chart">-->
+
+                  <!--</div>-->
+                <!--</div>-->
+              </div>
+              <div class="modal-footer">
+                <div class="col-xs-10 survey__toggle" ng-if="survey.status == 'draft'">
+                  <div class="status">
+                    <i class="fa fa-floppy-o"> draft </i>
+                  </div>
+                </div>
+                <div class="col-xs-10 survey__toggle text-left" ng-if="survey.status != 'draft'">
+                  <div class="switch">
+                    <input id="toggle_{{survey.id}}" class="toggle" type="checkbox" ng-checked="{{main.getToggleState(survey)}}">
+                    <label for="toggle_{{survey.id}}" class="" ng-click="main.toggleSurvey(survey)">
+                    </label>
+                    <div class="status">
+                      {{survey.status}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-14 survey__actions">
+                  <a href="#" ui-sref="home.surveyDetail.summary({id: survey.id, domainId: survey.domainId})"><i class="fa fa-bar-chart"></i></a>
+                  <a href="#" ui-sref="home.surveyDetail.responses({id: survey.id, domainId: survey.domainId})"><i class="fa fa-comments-o" uib-tooltip="Responses" tooltip-append-to-body="true"></i></a>
+                  <!--<a href="#"><i class="fa fa-file-text-o"></i></a>-->
+                  <a href="#" ui-sref="home.surveyEdit({id: survey.id, domainId: survey.domainId})"><i class="fa fa-pencil-square-o" uib-tooltip="Edit Survey" tooltip-append-to-body="true"></i></a>
+                </div>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-24">
+          <div class="pagination pull-right">
+            <div ng-if="main.surveys.length == 0">
+              <strong>"You have no surveys for this domain."</strong>
+            </div>
+            <div ng-if="main.surveys.length != 0">
+            <strong>{{main.lowerBound + 1}}-{{main.highBound}}</strong> of {{main.surveys.length}} Surveys
+            <button class="btn btn-default" ng-class="main.pagination.startClass" ng-click="main.prevPagination()"><i class="fa fa-arrow-left"></i></button>
+            <button class="btn btn-default" ng-class="main.pagination.endClass" ng-click="main.nextPagination()"><i class="fa fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="statistics" class="sidebar col-md-5">
+      <div class="row">
+        <div class="col-xs-24">
+          <h5 class="semibold">STATISTICS</h5>
+        </div>
+        <div class="col-xs-24 plan">
+          <!--<div class="plan__limit">-->
+            <!--<p class="plan__limit__title">Survey Running: <span class="pull-right">5</span></p>-->
+
+            <!--<p class="plan__limit__progress"><span style="width: 50%"></span></p>-->
+
+            <!--<p>0 <span class="pull-right">7</span></p>-->
+
+            <!--<p>Paused: 2 <span class="pull-right">Archived: 0</span></p>-->
+          <!--</div>-->
+          <div class="plan__limit">
+            <p class="plan__limit__title">Responses: <span class="tooltip-helper" uib-tooltip="The number of responses received across all active questions.">?</span> <span class="pull-right">{{main.stats.responsesQty}}</span></p>
+
+            <p class="plan__limit__progress"><span style="width: {{main.stats.responseProgress}}%"></span></p>
+
+            <p class="plan__limit__totals">0 <span class="pull-right">{{main.stats.responseLimit}}</span></p>
+          </div>
+          <div class="plan__limit">
+            <p class="plan__limit__title">Domains: <span class="tooltip-helper" uib-tooltip="The number of domains used and total domains available in this account.">?</span> <span class="pull-right">{{main.stats.domainQty}}</span></p>
+
+            <p class="plan__limit__progress"><span style="width: {{main.stats.domainProgress}}%"></span></p>
+
+            <p class="plan__limit__totals">0 <span class="pull-right">{{main.stats.domainLimit}}</span></p>
+          </div>
+          <!--<div class="plan__limit">-->
+            <!--<p class="plan__limit__title">Users: <span class="pull-right">1</span></p>-->
+          <!--</div>-->
+          <!--<div class="plan__limit plan__limit&#45;&#45;last">-->
+            <!--<p class="plan__limit__title">Plan Renew: <span class="pull-right">03/05/2015</span></p>-->
+            <!--<button class="btn btn-primary btn-block btn-lg">Upgrade your plan</button>-->
+          <!--</div>-->
+        </div>
+        <!--<div class="col-xs-24 help">-->
+          <!--<h4>Need help?</h4>-->
+
+          <!--<p><a href="#">Show me how to Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></p>-->
+
+          <!--<p><a href="">How to Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></p>-->
+
+          <!--<p><a href="">Why to Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></p>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<tour step="main.currentStep">-->
+  <!--<virtual-step-->
+    <!--tourtip="Content of the first step"-->
+    <!--tourtip-next-label="Move forward"-->
+    <!--tourtip-placement="bottom"-->
+    <!--tourtip-element=".btn.btn-success.btn-lg.btn-new"-->
+    <!--tourtip-step="0"></virtual-step>-->
+  <!--<virtual-step-->
+    <!--tourtip="Some other content..."-->
+    <!--tourtip-next-label="Faster, faster!"-->
+    <!--tourtip-placement="left"-->
+    <!--tourtip-element="#statistics"-->
+    <!--use-source-scope="true"-->
+    <!--tourtip-step="1"></virtual-step>-->
+<!--</tour>-->
